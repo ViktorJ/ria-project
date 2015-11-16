@@ -15,7 +15,7 @@ var WelcomeText = React.createClass({
         var value = this.state.value;
         return React.createElement(
             'div',
-            { className: 'welcomeText', __source: {
+            { className: 'welcomeText col-sm-6 col-md-6 col-lg-6', __source: {
                     fileName: '../../../../../main.js',
                     lineNumber: 14
                 }
@@ -30,7 +30,7 @@ var WelcomeText = React.createClass({
                 },
                 'What is your name?'
             ),
-            React.createElement('input', { type: 'text', ref: 'name', value: value, onChange: this.handleChange, __source: {
+            React.createElement('input', { type: 'text', ref: 'name', className: 'form-control', value: value, onChange: this.handleChange, __source: {
                     fileName: '../../../../../main.js',
                     lineNumber: 16
                 }
