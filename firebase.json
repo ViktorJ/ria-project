@@ -1,0 +1,9 @@
+{
+  "firebase": "sizzling-torch-6425",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

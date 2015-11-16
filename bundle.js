@@ -1,61 +1,113 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
+//var ReactFire = require('reactfire');
 
 var WelcomeText = React.createClass({
-    displayName: 'WelcomeText',
+  displayName: 'WelcomeText',
 
-    getInitialState: function () {
-        return { value: "" };
-    },
-    handleChange: function (e) {
-        this.setState({ value: e.target.value });
-    },
-    render: function () {
-        var value = this.state.value;
-        return React.createElement(
-            'div',
-            { className: 'welcomeText col-sm-6 col-md-6 col-lg-6', __source: {
-                    fileName: '../../../../../main.js',
-                    lineNumber: 14
-                }
-            },
-            React.createElement(
-                'h2',
-                {
-                    __source: {
-                        fileName: '../../../../../main.js',
-                        lineNumber: 15
-                    }
-                },
-                'What is your name?'
-            ),
-            React.createElement('input', { type: 'text', ref: 'name', className: 'form-control', value: value, onChange: this.handleChange, __source: {
-                    fileName: '../../../../../main.js',
-                    lineNumber: 16
-                }
-            }),
-            React.createElement(
-                'h1',
-                {
-                    __source: {
-                        fileName: '../../../../../main.js',
-                        lineNumber: 17
-                    }
-                },
-                'Welcome ',
-                value,
-                '!'
-            )
-        );
+  //  mixins: [ReactFireMixin],
+  getInitialState: function () {
+    return { value: "" };
+  },
+  componentWillMount: function () {
+    var firebaseRef = new Firebase("https://sizzling-torch-6425.firebaseio.com");
+
+    var authData = firebaseRef.getAuth();
+
+    if (authData) {
+      console.log("User " + authData.uid + " is logged in!");
+    } else {
+      console.log("User is not logged in!");
     }
+
+    function authHandler(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+      }
+    }
+
+    firebaseRef.authWithPassword({
+      email: 'rotkivnossnaj@gmail.com',
+      password: 'test'
+    }, authHandler);
+  },
+  handleChange: function (e) {
+    this.setState({ value: e.target.value });
+  },
+  render: function () {
+    var value = this.state.value;
+    return React.createElement(
+      'div',
+      { className: 'welcomeText col-sm-6 col-md-6 col-lg-6', __source: {
+          fileName: '../../../../../main.js',
+          lineNumber: 40
+        }
+      },
+      React.createElement(
+        'h1',
+        {
+          __source: {
+            fileName: '../../../../../main.js',
+            lineNumber: 41
+          }
+        },
+        'Login'
+      ),
+      React.createElement(
+        'form',
+        { className: 'form-inline', __source: {
+            fileName: '../../../../../main.js',
+            lineNumber: 42
+          }
+        },
+        React.createElement(
+          'div',
+          { className: 'form-group', __source: {
+              fileName: '../../../../../main.js',
+              lineNumber: 43
+            }
+          },
+          React.createElement('input', { type: 'text', className: 'form-control', ref: 'email', placeholder: 'Email', __source: {
+              fileName: '../../../../../main.js',
+              lineNumber: 44
+            }
+          })
+        ),
+        React.createElement(
+          'div',
+          { className: 'form-group', __source: {
+              fileName: '../../../../../main.js',
+              lineNumber: 46
+            }
+          },
+          React.createElement('input', { type: 'password', className: 'form-control', id: 'password', placeholder: 'Password', __source: {
+              fileName: '../../../../../main.js',
+              lineNumber: 47
+            }
+          })
+        ),
+        React.createElement(
+          'button',
+          { type: 'submit', className: 'btn btn-primary', __source: {
+              fileName: '../../../../../main.js',
+              lineNumber: 49
+            }
+          },
+          'Submit'
+        )
+      )
+    );
+  }
 });
 
 ReactDOM.render(React.createElement(WelcomeText, {
-    __source: {
-        fileName: '../../../../../main.js',
-        lineNumber: 24
-    }
+  __source: {
+    fileName: '../../../../../main.js',
+    lineNumber: 57
+  }
 }), document.getElementById('content'));
 
 },{"react":158,"react-dom":2}],2:[function(require,module,exports){
