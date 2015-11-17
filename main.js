@@ -5,24 +5,19 @@ var ReactDOM = require('react-dom');
 var WelcomeText = React.createClass({
   //  mixins: [ReactFireMixin],
     getInitialState: function(){
-        return {value: ""};
+        return {alertClass: "alert alert-info",
+                logedin: "User is not logged in"};
     },
     componentWillMount: function(){
         var firebaseRef = new Firebase("https://sizzling-torch-6425.firebaseio.com");
         
         var authData = firebaseRef.getAuth();
         
-        if(authData){
-        console.log("User " + authData.uid + " is logged in!");
-        } else {
-            console.log("User is not logged in!");
-        }
-        
         function authHandler(error, authData) {
           if (error) {
             console.log("Login Failed!", error);
           } else {
-            console.log("Authenticated successfully with payload:", authData);
+              console.log("Authenticated successfully with email:", authData.password.email);
           }
         }
         
@@ -35,7 +30,9 @@ var WelcomeText = React.createClass({
         this.setState({value: e.target.value});
     },
     render: function(){
-        var value = this.state.value;
+        //var value = this.state.value;
+        //var alertClass = this.state.alertClass;
+        //var logedin = this.state.logedin;
         return (
             <div className="welcomeText col-sm-6 col-md-6 col-lg-6">
             <h1>Login</h1>
@@ -44,11 +41,20 @@ var WelcomeText = React.createClass({
                 <input type="text" className="form-control" ref="email" placeholder="Email" />
               </div>
               <div className="form-group">
-                <input type="password" className="form-control" id="password" placeholder="Password" />
+                <input type="password" className="form-control" ref="password" placeholder="Password" />
               </div>
               <button type="submit" className="btn btn-primary">Submit</button>
             </form>
+            <AlertMsg alertClass={this.state.alertClass} logedin={this.state.logedin}/>
             </div>
+        );
+    }
+});
+
+var AlertMsg = React.createClass({
+    render: function(){
+        return (
+            <div className={this.props.alertClass}>{this.props.logedin}</div>
         );
     }
 });
