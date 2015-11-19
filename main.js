@@ -3,51 +3,38 @@ var ReactDOM = require('react-dom');
 var Router = require('react-router').Router;
 var Route = require('react-router').Route;
 var Link = require('react-router').Link;
+var Navigation = require('react-router').Navigation;
 
-//var ReactFire = require('reactfire');
-
-var WelcomeText = React.createClass({
-  //  mixins: [ReactFireMixin],
+var LoginComponent = React.createClass({
+    mixins: [Navigation],
     getInitialState: function(){
         return {alertClass: "alert alert-info",
                 logedin: "User is not logged in"};
     },
-    componentWillMount: function(){
-        
-        
+    redirect: function(){
+        this.props.history.pushState(null, '/welcome');
     },
     handleSubmit: function(e){
         e.preventDefault();
-        var isUser = false;
+        
         var user = {
             email   : this.refs.email.value,
             password: this.refs.password.value};
         console.log(user);
         
-        var firebaseRef = new Firebase("https://sizzling-torch-6425.firebaseio.com");
-        var authData = firebaseRef.getAuth();
+        this.firebaseRef = new Firebase("https://sizzling-torch-6425.firebaseio.com");
+        var authData = this.firebaseRef.getAuth();
         
-        function authHandler(error, authData, isUser) {
+        var self = this;
+        function authHandler(error, authData) {
           if (error) {
             console.log("Login Failed!", error);
           } else {
-              isUser = true;
               console.log("Authenticated successfully with email: ", authData.password.email);
+              self.props.history.pushState(null, '/welcome');
           }
         }
-        firebaseRef.authWithPassword(user, authHandler);
-        
-        checkLogin(isUser);
-        
-        function checkLogin(isUser){
-            if(isUser){
-                this.setState({alertClass: "alert alert-success",
-                logedin: "You are logged in!"});
-            } else {
-                this.setState({alertClass: "alert alert-danger",
-                logedin: "Login failed!"});
-            }
-        }
+        this.firebaseRef.authWithPassword(user, authHandler);
     },
     render: function(){
         return (
@@ -76,7 +63,17 @@ var AlertMsg = React.createClass({
     }
 });
 
-ReactDOM.render(
-    <WelcomeText />,
-    document.getElementById('content')
-);
+var Welcome = React.createClass({
+    render: function(){
+        return (
+            <h1>Welcome!</h1>
+        );
+    }
+});
+
+ReactDOM.render((
+    <Router>
+        <Route path="/" component={LoginComponent} />
+        <Route path="/welcome" component={Welcome} />
+    </Router>
+), document.getElementById('content'));
