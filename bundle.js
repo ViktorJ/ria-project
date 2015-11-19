@@ -32,6 +32,8 @@ var LoginComponent = React.createClass({
         function authHandler(error, authData) {
             if (error) {
                 console.log("Login Failed!", error);
+                self.setState({ alertClass: "alert alert-danger",
+                    logedin: "Login failed, please try again." });
             } else {
                 console.log("Authenticated successfully with email: ", authData.password.email);
                 self.props.history.pushState(null, '/welcome');
@@ -44,7 +46,7 @@ var LoginComponent = React.createClass({
             'div',
             { className: 'welcomeText col-sm-6 col-md-6 col-lg-6', __source: {
                     fileName: '../../../../../main.js',
-                    lineNumber: 41
+                    lineNumber: 43
                 }
             },
             React.createElement(
@@ -52,7 +54,7 @@ var LoginComponent = React.createClass({
                 {
                     __source: {
                         fileName: '../../../../../main.js',
-                        lineNumber: 42
+                        lineNumber: 44
                     }
                 },
                 'Login'
@@ -61,19 +63,19 @@ var LoginComponent = React.createClass({
                 'form',
                 { className: 'form-inline', onSubmit: this.handleSubmit, __source: {
                         fileName: '../../../../../main.js',
-                        lineNumber: 43
+                        lineNumber: 45
                     }
                 },
                 React.createElement(
                     'div',
                     { className: 'form-group', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 44
+                            lineNumber: 46
                         }
                     },
                     React.createElement('input', { type: 'text', className: 'form-control', ref: 'email', placeholder: 'Email', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 45
+                            lineNumber: 47
                         }
                     })
                 ),
@@ -81,12 +83,12 @@ var LoginComponent = React.createClass({
                     'div',
                     { className: 'form-group', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 47
+                            lineNumber: 49
                         }
                     },
                     React.createElement('input', { type: 'password', className: 'form-control', ref: 'password', placeholder: 'Password', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 48
+                            lineNumber: 50
                         }
                     })
                 ),
@@ -94,7 +96,7 @@ var LoginComponent = React.createClass({
                     'button',
                     { type: 'submit', className: 'btn btn-primary', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 50
+                            lineNumber: 52
                         }
                     },
                     'Submit'
@@ -102,7 +104,7 @@ var LoginComponent = React.createClass({
             ),
             React.createElement(AlertMsg, { alertClass: this.state.alertClass, logedin: this.state.logedin, __source: {
                     fileName: '../../../../../main.js',
-                    lineNumber: 52
+                    lineNumber: 54
                 }
             })
         );
@@ -117,7 +119,7 @@ var AlertMsg = React.createClass({
             'div',
             { className: this.props.alertClass, __source: {
                     fileName: '../../../../../main.js',
-                    lineNumber: 61
+                    lineNumber: 63
                 }
             },
             this.props.logedin
@@ -134,7 +136,7 @@ var Welcome = React.createClass({
             {
                 __source: {
                     fileName: '../../../../../main.js',
-                    lineNumber: 69
+                    lineNumber: 71
                 }
             },
             'Welcome!'
@@ -147,17 +149,17 @@ ReactDOM.render(React.createElement(
     {
         __source: {
             fileName: '../../../../../main.js',
-            lineNumber: 75
+            lineNumber: 77
         }
     },
     React.createElement(Route, { path: '/', component: LoginComponent, __source: {
             fileName: '../../../../../main.js',
-            lineNumber: 76
+            lineNumber: 78
         }
     }),
     React.createElement(Route, { path: '/welcome', component: Welcome, __source: {
             fileName: '../../../../../main.js',
-            lineNumber: 77
+            lineNumber: 79
         }
     })
 ), document.getElementById('content'));

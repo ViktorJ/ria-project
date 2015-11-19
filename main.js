@@ -19,8 +19,8 @@ var LoginComponent = React.createClass({
         
         var user = {
             email   : this.refs.email.value,
-            password: this.refs.password.value};
-        console.log(user);
+            password: this.refs.password.value
+        };
         
         this.firebaseRef = new Firebase("https://sizzling-torch-6425.firebaseio.com");
         var authData = this.firebaseRef.getAuth();
@@ -29,6 +29,8 @@ var LoginComponent = React.createClass({
         function authHandler(error, authData) {
           if (error) {
             console.log("Login Failed!", error);
+            self.setState({alertClass: "alert alert-danger",
+                logedin: "Login failed, please try again."});
           } else {
               console.log("Authenticated successfully with email: ", authData.password.email);
               self.props.history.pushState(null, '/welcome');
