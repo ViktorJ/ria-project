@@ -1,5 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Router = require('react-router').Router;
+var Route = require('react-router').Route;
+var Link = require('react-router').Link;
+
 //var ReactFire = require('reactfire');
 
 var WelcomeText = React.createClass({
@@ -9,34 +13,47 @@ var WelcomeText = React.createClass({
                 logedin: "User is not logged in"};
     },
     componentWillMount: function(){
-        var firebaseRef = new Firebase("https://sizzling-torch-6425.firebaseio.com");
         
+        
+    },
+    handleSubmit: function(e){
+        e.preventDefault();
+        var isUser = false;
+        var user = {
+            email   : this.refs.email.value,
+            password: this.refs.password.value};
+        console.log(user);
+        
+        var firebaseRef = new Firebase("https://sizzling-torch-6425.firebaseio.com");
         var authData = firebaseRef.getAuth();
         
-        function authHandler(error, authData) {
+        function authHandler(error, authData, isUser) {
           if (error) {
             console.log("Login Failed!", error);
           } else {
-              console.log("Authenticated successfully with email:", authData.password.email);
+              isUser = true;
+              console.log("Authenticated successfully with email: ", authData.password.email);
           }
         }
+        firebaseRef.authWithPassword(user, authHandler);
         
-        firebaseRef.authWithPassword({
-          email    : 'rotkivnossnaj@gmail.com',
-          password : 'test'
-        }, authHandler);
-    },
-    handleChange: function(e){
-        this.setState({value: e.target.value});
+        checkLogin(isUser);
+        
+        function checkLogin(isUser){
+            if(isUser){
+                this.setState({alertClass: "alert alert-success",
+                logedin: "You are logged in!"});
+            } else {
+                this.setState({alertClass: "alert alert-danger",
+                logedin: "Login failed!"});
+            }
+        }
     },
     render: function(){
-        //var value = this.state.value;
-        //var alertClass = this.state.alertClass;
-        //var logedin = this.state.logedin;
         return (
             <div className="welcomeText col-sm-6 col-md-6 col-lg-6">
             <h1>Login</h1>
-            <form className="form-inline">
+            <form className="form-inline" onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <input type="text" className="form-control" ref="email" placeholder="Email" />
               </div>

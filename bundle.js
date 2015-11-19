@@ -11,36 +11,46 @@ var WelcomeText = React.createClass({
         return { alertClass: "alert alert-info",
             logedin: "User is not logged in" };
     },
-    componentWillMount: function () {
-        var firebaseRef = new Firebase("https://sizzling-torch-6425.firebaseio.com");
+    componentWillMount: function () {},
+    handleSubmit: function (e) {
+        e.preventDefault();
+        var isUser = false;
+        var user = {
+            email: this.refs.email.value,
+            password: this.refs.password.value };
+        console.log(user);
 
+        var firebaseRef = new Firebase("https://sizzling-torch-6425.firebaseio.com");
         var authData = firebaseRef.getAuth();
 
-        function authHandler(error, authData) {
+        function authHandler(error, authData, isUser) {
             if (error) {
                 console.log("Login Failed!", error);
             } else {
+                isUser = true;
                 console.log("Authenticated successfully with email:", authData.password.email);
             }
         }
+        firebaseRef.authWithPassword(user, authHandler);
 
-        firebaseRef.authWithPassword({
-            email: 'rotkivnossnaj@gmail.com',
-            password: 'test'
-        }, authHandler);
-    },
-    handleChange: function (e) {
-        this.setState({ value: e.target.value });
+        checkLogin(isUser);
+
+        function checkLogin(isUser) {
+            if (isUser) {
+                this.setState({ alertClass: "alert alert-success",
+                    logedin: "You are logged in!" });
+            } else {
+                this.setState({ alertClass: "alert alert-danger",
+                    logedin: "Login failed!" });
+            }
+        }
     },
     render: function () {
-        //var value = this.state.value;
-        //var alertClass = this.state.alertClass;
-        //var logedin = this.state.logedin;
         return React.createElement(
             'div',
             { className: 'welcomeText col-sm-6 col-md-6 col-lg-6', __source: {
                     fileName: '../../../../../main.js',
-                    lineNumber: 37
+                    lineNumber: 50
                 }
             },
             React.createElement(
@@ -48,28 +58,28 @@ var WelcomeText = React.createClass({
                 {
                     __source: {
                         fileName: '../../../../../main.js',
-                        lineNumber: 38
+                        lineNumber: 51
                     }
                 },
                 'Login'
             ),
             React.createElement(
                 'form',
-                { className: 'form-inline', __source: {
+                { className: 'form-inline', onSubmit: this.handleSubmit, __source: {
                         fileName: '../../../../../main.js',
-                        lineNumber: 39
+                        lineNumber: 52
                     }
                 },
                 React.createElement(
                     'div',
                     { className: 'form-group', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 40
+                            lineNumber: 53
                         }
                     },
                     React.createElement('input', { type: 'text', className: 'form-control', ref: 'email', placeholder: 'Email', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 41
+                            lineNumber: 54
                         }
                     })
                 ),
@@ -77,12 +87,12 @@ var WelcomeText = React.createClass({
                     'div',
                     { className: 'form-group', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 43
+                            lineNumber: 56
                         }
                     },
                     React.createElement('input', { type: 'password', className: 'form-control', ref: 'password', placeholder: 'Password', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 44
+                            lineNumber: 57
                         }
                     })
                 ),
@@ -90,7 +100,7 @@ var WelcomeText = React.createClass({
                     'button',
                     { type: 'submit', className: 'btn btn-primary', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 46
+                            lineNumber: 59
                         }
                     },
                     'Submit'
@@ -98,7 +108,7 @@ var WelcomeText = React.createClass({
             ),
             React.createElement(AlertMsg, { alertClass: this.state.alertClass, logedin: this.state.logedin, __source: {
                     fileName: '../../../../../main.js',
-                    lineNumber: 48
+                    lineNumber: 61
                 }
             })
         );
@@ -113,7 +123,7 @@ var AlertMsg = React.createClass({
             'div',
             { className: this.props.alertClass, __source: {
                     fileName: '../../../../../main.js',
-                    lineNumber: 57
+                    lineNumber: 70
                 }
             },
             this.props.logedin
@@ -124,7 +134,7 @@ var AlertMsg = React.createClass({
 ReactDOM.render(React.createElement(WelcomeText, {
     __source: {
         fileName: '../../../../../main.js',
-        lineNumber: 63
+        lineNumber: 76
     }
 }), document.getElementById('content'));
 
