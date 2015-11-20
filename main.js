@@ -52,7 +52,7 @@ var LoginComponent = React.createClass({
                 <input type="password" className="form-control" ref="password" placeholder="Password" />
               </div>
               <button type="submit" className="btn btn-primary">Login</button>
-              <button type="submit" className="btn btn-info"><Link to="/createUser">New account</Link></button>
+              <button type="button" className="btn btn-info"><Link to="/createUser">New account</Link></button>
             </form>
             <AlertMsg alertClass={this.state.alertClass} logedin={this.state.logedin}/>
             </div>
