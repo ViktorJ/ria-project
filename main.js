@@ -5,6 +5,8 @@ var Route = require('react-router').Route;
 var Link = require('react-router').Link;
 var Navigation = require('react-router').Navigation;
 
+var myFirebase = "https://sizzling-torch-6425.firebaseio.com";
+
 var LoginComponent = React.createClass({
     mixins: [Navigation],
     getInitialState: function(){
@@ -22,7 +24,7 @@ var LoginComponent = React.createClass({
             password: this.refs.password.value
         };
         
-        this.firebaseRef = new Firebase("https://sizzling-torch-6425.firebaseio.com");
+        this.firebaseRef = new Firebase(myFirebase);
         var authData = this.firebaseRef.getAuth();
         
         var self = this;
@@ -33,14 +35,14 @@ var LoginComponent = React.createClass({
                 logedin: "Login failed, please try again."});
           } else {
               console.log("Authenticated successfully with email: ", authData.password.email);
-              self.props.history.pushState(null, '/welcome');
+              self.redirect();
           }
         }
         this.firebaseRef.authWithPassword(user, authHandler);
     },
     render: function(){
         return (
-            <div className="welcomeText col-sm-6 col-md-6 col-lg-6">
+            <div className="col-sm-6 col-md-6 col-lg-6">
             <h1>Login</h1>
             <form className="form-inline" onSubmit={this.handleLoginSubmit}>
               <div className="form-group">
@@ -71,7 +73,7 @@ var CreateUser = React.createClass({
             password: this.refs.password.value
         };
         
-        this.firebaseRef = new Firebase("https://sizzling-torch-6425.firebaseio.com");
+        this.firebaseRef = new Firebase(myFirebase);
         var authData = this.firebaseRef.getAuth();
         
         var self = this;
@@ -100,8 +102,8 @@ var CreateUser = React.createClass({
                     <input type="password" className="form-control" ref="password" placeholder="Password" />
                   </div>
                   <button type="submit" className="btn btn-primary">Create</button>
-                  <button className="btn btn-info"><Link to="/">Back</Link></button>
                 </form>
+                <button className="btn btn-info"><Link to="/">Back</Link></button>
                 <AlertMsg alertClass={this.state.alertClass} logedin={this.state.logedin}/>
             </div>
         );

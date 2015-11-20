@@ -6,6 +6,8 @@ var Route = require('react-router').Route;
 var Link = require('react-router').Link;
 var Navigation = require('react-router').Navigation;
 
+var myFirebase = "https://sizzling-torch-6425.firebaseio.com";
+
 var LoginComponent = React.createClass({
     displayName: 'LoginComponent',
 
@@ -25,7 +27,7 @@ var LoginComponent = React.createClass({
             password: this.refs.password.value
         };
 
-        this.firebaseRef = new Firebase("https://sizzling-torch-6425.firebaseio.com");
+        this.firebaseRef = new Firebase(myFirebase);
         var authData = this.firebaseRef.getAuth();
 
         var self = this;
@@ -36,7 +38,7 @@ var LoginComponent = React.createClass({
                     logedin: "Login failed, please try again." });
             } else {
                 console.log("Authenticated successfully with email: ", authData.password.email);
-                self.props.history.pushState(null, '/welcome');
+                self.redirect();
             }
         }
         this.firebaseRef.authWithPassword(user, authHandler);
@@ -44,9 +46,9 @@ var LoginComponent = React.createClass({
     render: function () {
         return React.createElement(
             'div',
-            { className: 'welcomeText col-sm-6 col-md-6 col-lg-6', __source: {
+            { className: 'col-sm-6 col-md-6 col-lg-6', __source: {
                     fileName: '../../../../../main.js',
-                    lineNumber: 43
+                    lineNumber: 45
                 }
             },
             React.createElement(
@@ -54,7 +56,7 @@ var LoginComponent = React.createClass({
                 {
                     __source: {
                         fileName: '../../../../../main.js',
-                        lineNumber: 44
+                        lineNumber: 46
                     }
                 },
                 'Login'
@@ -63,19 +65,19 @@ var LoginComponent = React.createClass({
                 'form',
                 { className: 'form-inline', onSubmit: this.handleLoginSubmit, __source: {
                         fileName: '../../../../../main.js',
-                        lineNumber: 45
+                        lineNumber: 47
                     }
                 },
                 React.createElement(
                     'div',
                     { className: 'form-group', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 46
+                            lineNumber: 48
                         }
                     },
                     React.createElement('input', { type: 'text', className: 'form-control', ref: 'email', placeholder: 'Email', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 47
+                            lineNumber: 49
                         }
                     })
                 ),
@@ -83,12 +85,12 @@ var LoginComponent = React.createClass({
                     'div',
                     { className: 'form-group', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 49
+                            lineNumber: 51
                         }
                     },
                     React.createElement('input', { type: 'password', className: 'form-control', ref: 'password', placeholder: 'Password', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 50
+                            lineNumber: 52
                         }
                     })
                 ),
@@ -96,7 +98,7 @@ var LoginComponent = React.createClass({
                     'button',
                     { type: 'submit', className: 'btn btn-primary', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 52
+                            lineNumber: 54
                         }
                     },
                     'Login'
@@ -105,14 +107,14 @@ var LoginComponent = React.createClass({
                     'button',
                     { type: 'submit', className: 'btn btn-info', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 53
+                            lineNumber: 55
                         }
                     },
                     React.createElement(
                         Link,
                         { to: '/createUser', __source: {
                                 fileName: '../../../../../main.js',
-                                lineNumber: 53
+                                lineNumber: 55
                             }
                         },
                         'New account'
@@ -121,7 +123,7 @@ var LoginComponent = React.createClass({
             ),
             React.createElement(AlertMsg, { alertClass: this.state.alertClass, logedin: this.state.logedin, __source: {
                     fileName: '../../../../../main.js',
-                    lineNumber: 55
+                    lineNumber: 57
                 }
             })
         );
@@ -143,7 +145,7 @@ var CreateUser = React.createClass({
             password: this.refs.password.value
         };
 
-        this.firebaseRef = new Firebase("https://sizzling-torch-6425.firebaseio.com");
+        this.firebaseRef = new Firebase(myFirebase);
         var authData = this.firebaseRef.getAuth();
 
         var self = this;
@@ -164,7 +166,7 @@ var CreateUser = React.createClass({
             'div',
             { className: 'col-sm-6 col-md-6 col-lg-6', __source: {
                     fileName: '../../../../../main.js',
-                    lineNumber: 92
+                    lineNumber: 94
                 }
             },
             React.createElement(
@@ -172,7 +174,7 @@ var CreateUser = React.createClass({
                 {
                     __source: {
                         fileName: '../../../../../main.js',
-                        lineNumber: 93
+                        lineNumber: 95
                     }
                 },
                 'New account'
@@ -182,7 +184,7 @@ var CreateUser = React.createClass({
                 {
                     __source: {
                         fileName: '../../../../../main.js',
-                        lineNumber: 94
+                        lineNumber: 96
                     }
                 },
                 'Fill in the form and submit to create a new account'
@@ -191,19 +193,19 @@ var CreateUser = React.createClass({
                 'form',
                 { onSubmit: this.handleCreateUser, __source: {
                         fileName: '../../../../../main.js',
-                        lineNumber: 95
+                        lineNumber: 97
                     }
                 },
                 React.createElement(
                     'div',
                     { className: 'form-group', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 96
+                            lineNumber: 98
                         }
                     },
                     React.createElement('input', { type: 'text', className: 'form-control', ref: 'email', placeholder: 'Email', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 97
+                            lineNumber: 99
                         }
                     })
                 ),
@@ -211,12 +213,12 @@ var CreateUser = React.createClass({
                     'div',
                     { className: 'form-group', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 99
+                            lineNumber: 101
                         }
                     },
                     React.createElement('input', { type: 'password', className: 'form-control', ref: 'password', placeholder: 'Password', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 100
+                            lineNumber: 102
                         }
                     })
                 ),
@@ -224,32 +226,32 @@ var CreateUser = React.createClass({
                     'button',
                     { type: 'submit', className: 'btn btn-primary', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 102
+                            lineNumber: 104
                         }
                     },
                     'Create'
-                ),
+                )
+            ),
+            React.createElement(
+                'button',
+                { className: 'btn btn-info', __source: {
+                        fileName: '../../../../../main.js',
+                        lineNumber: 106
+                    }
+                },
                 React.createElement(
-                    'button',
-                    { className: 'btn btn-info', __source: {
+                    Link,
+                    { to: '/', __source: {
                             fileName: '../../../../../main.js',
-                            lineNumber: 103
+                            lineNumber: 106
                         }
                     },
-                    React.createElement(
-                        Link,
-                        { to: '/', __source: {
-                                fileName: '../../../../../main.js',
-                                lineNumber: 103
-                            }
-                        },
-                        'Back'
-                    )
+                    'Back'
                 )
             ),
             React.createElement(AlertMsg, { alertClass: this.state.alertClass, logedin: this.state.logedin, __source: {
                     fileName: '../../../../../main.js',
-                    lineNumber: 105
+                    lineNumber: 107
                 }
             })
         );
@@ -264,7 +266,7 @@ var AlertMsg = React.createClass({
             'div',
             { className: this.props.alertClass, __source: {
                     fileName: '../../../../../main.js',
-                    lineNumber: 114
+                    lineNumber: 116
                 }
             },
             this.props.logedin
@@ -281,7 +283,7 @@ var Welcome = React.createClass({
             {
                 __source: {
                     fileName: '../../../../../main.js',
-                    lineNumber: 122
+                    lineNumber: 124
                 }
             },
             'Welcome!'
@@ -294,22 +296,22 @@ ReactDOM.render(React.createElement(
     {
         __source: {
             fileName: '../../../../../main.js',
-            lineNumber: 128
+            lineNumber: 130
         }
     },
     React.createElement(Route, { path: '/', component: LoginComponent, __source: {
             fileName: '../../../../../main.js',
-            lineNumber: 129
+            lineNumber: 131
         }
     }),
     React.createElement(Route, { path: '/welcome', component: Welcome, __source: {
             fileName: '../../../../../main.js',
-            lineNumber: 130
+            lineNumber: 132
         }
     }),
     React.createElement(Route, { path: '/createUser', component: CreateUser, __source: {
             fileName: '../../../../../main.js',
-            lineNumber: 131
+            lineNumber: 133
         }
     })
 ), document.getElementById('content'));
