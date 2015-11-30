@@ -1,14 +1,13 @@
 var React = require("react");
+var ptypes = React.PropTypes;
+var ReactRedux = require('react-redux');
 var Router = require('react-router').Router;
 var Link = require('react-router').Link;
-var AlertMsg = require("./alertmsg");
+var Alert = require("./alert");
+var actions = require('../actions');
 var myFirebase = "https://sizzling-torch-6425.firebaseio.com";
 
 var CreateUser = React.createClass({
-    getInitialState: function(){
-        return {alertClass: "",
-                logedin: ""};
-    },
     handleCreateUser: function(e){
         e.preventDefault();
         
@@ -24,12 +23,10 @@ var CreateUser = React.createClass({
         this.firebaseRef.createUser(user, function(error, userData) {
           if (error) {
             console.log("Error creating user:", error);
-            self.setState({alertClass: "alert alert-danger",
-                logedin: "Something went wrong, please try again."});
+           self.props.registerFail();
           } else {
             console.log("Successfully created user account with uid:", userData.uid);
-            self.setState({alertClass: "alert alert-success",
-                logedin: "You have created a new account. Please go back and login."});
+            self.props.registerSucc();
           }
         });
     },
@@ -47,11 +44,29 @@ var CreateUser = React.createClass({
                   </div>
                   <button type="submit" className="btn btn-primary">Create</button>
                 </form>
-                <button className="btn btn-info"><Link to="/">Back</Link></button>
-                <AlertMsg alertClass={this.state.alertClass} logedin={this.state.logedin}/>
+                <button className="btn btn-info" onClick={this.props.initial}><Link to="/">Back</Link></button>
+                <Alert alertClass={this.props.alert.alertClass} alertMsg={this.props.alert.alertMsg}/>
             </div>
         );
     }
 });
 
-module.exports = CreateUser;
+var mapStateToProps = function(state){
+    return {alert:state.alert};
+};
+
+var mapDispatchToProps = function(dispatch){
+    return {
+        registerSucc: function(){
+            dispatch(actions.alertRegisterSucc());
+        },
+        registerFail: function(){
+            dispatch(actions.alertRegisterFail());
+        },
+        initial: function(){
+            dispatch(actions.initial());
+        }
+    }
+};
+
+module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(CreateUser);

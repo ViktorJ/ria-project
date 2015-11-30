@@ -1,5 +1,9 @@
 {
-	"scripts": {
-		"build": "browserify -t [ babelify --presets [ react ] ] src/main.js -o bundle.js"
-	}
+  "scripts": {
+    "build": "browserify -t [ babelify --presets [ react ] ] src/main.js -o bundle.js"
+  },
+  "dependencies": {
+    "react-redux": "^4.0.0",
+    "redux": "^3.0.4"
+  }
 }

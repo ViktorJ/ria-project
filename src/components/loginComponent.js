@@ -1,16 +1,15 @@
 var React = require("react");
+var ptypes = React.PropTypes;
 var Router = require('react-router').Router;
+var ReactRedux = require('react-redux');
 var Link = require('react-router').Link;
 var Navigation = require('react-router').Navigation;
-var AlertMsg = require("./alertmsg");
+var Alert = require("./alert");
+var actions = require('../actions');
 var myFirebase = "https://sizzling-torch-6425.firebaseio.com";
 
 var LoginComponent = React.createClass({
     mixins: [Navigation],
-    getInitialState: function(){
-        return {alertClass: "alert alert-info",
-                logedin: "User is not logged in"};
-    },
     redirect: function(){
         this.props.history.pushState(null, '/welcome');
     },
@@ -29,8 +28,7 @@ var LoginComponent = React.createClass({
         function authHandler(error, authData) {
           if (error) {
             console.log("Login Failed!", error);
-            self.setState({alertClass: "alert alert-danger",
-                logedin: "Login failed, please try again."});
+            self.props.loginFail();
           } else {
               console.log("Authenticated successfully with email: ", authData.password.email);
               self.redirect();
@@ -52,10 +50,22 @@ var LoginComponent = React.createClass({
               <button type="submit" className="btn btn-primary">Login</button>
               <button type="button" className="btn btn-info"><Link to="/createUser">New account</Link></button>
             </form>
-            <AlertMsg alertClass={this.state.alertClass} logedin={this.state.logedin}/>
+            <Alert alertClass={this.props.alert.alertClass} alertMsg={this.props.alert.alertMsg}/>
             </div>
         );
     }
 });
 
-module.exports = LoginComponent;
+var mapStateToProps = function(state){
+    return {alert:state.alert};
+};
+
+var mapDispatchToProps = function(dispatch){
+    return {
+        loginFail: function(){
+            dispatch(actions.alertLoginFail());
+        }
+    }
+};
+
+module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LoginComponent);
