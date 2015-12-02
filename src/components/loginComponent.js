@@ -48,7 +48,7 @@ var LoginComponent = React.createClass({
                 <input type="password" className="form-control" ref="password" placeholder="Password" />
               </div>
               <button type="submit" className="btn btn-primary">Login</button>
-              <button type="button" className="btn btn-info"><Link to="/createUser">New account</Link></button>
+              <button type="button" className="btn btn-info" onClick={this.props.initial}><Link to="/createUser">New account</Link></button>
             </form>
             <Alert alertClass={this.props.alert.alertClass} alertMsg={this.props.alert.alertMsg}/>
             </div>
@@ -64,6 +64,9 @@ var mapDispatchToProps = function(dispatch){
     return {
         loginFail: function(){
             dispatch(actions.alertLoginFail());
+        },
+        initial: function(){
+            dispatch(actions.initial());
         }
     }
 };

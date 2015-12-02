@@ -24573,23 +24573,23 @@ var CreateUser = React.createClass({
                         }
                     },
                     'Create'
-                )
-            ),
-            React.createElement(
-                'button',
-                { className: 'btn btn-info', onClick: this.props.initial, __source: {
-                        fileName: '../../../../../src/components/createuser.js',
-                        lineNumber: 47
-                    }
-                },
+                ),
                 React.createElement(
-                    Link,
-                    { to: '/', __source: {
+                    'button',
+                    { className: 'btn btn-info', onClick: this.props.initial, __source: {
                             fileName: '../../../../../src/components/createuser.js',
-                            lineNumber: 47
+                            lineNumber: 46
                         }
                     },
-                    'Back'
+                    React.createElement(
+                        Link,
+                        { to: '/', __source: {
+                                fileName: '../../../../../src/components/createuser.js',
+                                lineNumber: 46
+                            }
+                        },
+                        'Back'
+                    )
                 )
             ),
             React.createElement(Alert, { alertClass: this.props.alert.alertClass, alertMsg: this.props.alert.alertMsg, __source: {
@@ -24724,7 +24724,7 @@ var LoginComponent = React.createClass({
                 ),
                 React.createElement(
                     'button',
-                    { type: 'button', className: 'btn btn-info', __source: {
+                    { type: 'button', className: 'btn btn-info', onClick: this.props.initial, __source: {
                             fileName: '../../../../../src/components/logincomponent.js',
                             lineNumber: 51
                         }
@@ -24757,6 +24757,9 @@ var mapDispatchToProps = function (dispatch) {
     return {
         loginFail: function () {
             dispatch(actions.alertLoginFail());
+        },
+        initial: function () {
+            dispatch(actions.initial());
         }
     };
 };
