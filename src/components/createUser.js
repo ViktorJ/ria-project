@@ -43,8 +43,8 @@ var CreateUser = React.createClass({
                     <input type="password" className="form-control" ref="password" placeholder="Password" />
                   </div>
                   <button type="submit" className="btn btn-primary">Create</button>
+                  <button className="btn btn-info" onClick={this.props.initial}><Link to="/">Back</Link></button>
                 </form>
-                <button className="btn btn-info" onClick={this.props.initial}><Link to="/">Back</Link></button>
                 <Alert alertClass={this.props.alert.alertClass} alertMsg={this.props.alert.alertMsg}/>
             </div>
         );
