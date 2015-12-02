@@ -1,11 +1,13 @@
-var Redux = require('redux');
-var alertReducer = require('./reducers/alert');
-var initialState = require('./initialstate');
+'use strict';
 
-var reducers = Redux.combineReducers({
+let Redux = require('redux'),
+    alertReducer = require('./reducers/alert'),
+    initialState = require('./initialstate');
+
+let reducers = Redux.combineReducers({
     alert: alertReducer
 });
 
-var store = Redux.createStore(reducers, initialState());
+let store = Redux.createStore(reducers, initialState());
 
 module.exports = store;

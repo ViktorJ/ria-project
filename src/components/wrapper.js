@@ -1,6 +1,8 @@
-var React = require('react');
+'use strict';
 
-var Wrapper = React.createClass({
+let React = require('react');
+
+const Wrapper = React.createClass({
     render: function() {
         return (
             <div className="wrapper">

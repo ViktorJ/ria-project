@@ -1,14 +1,18 @@
+'use strict';
+
+let C = require('./constants');
+
 module.exports = {
     initial: function(){
-        return {type: 'INITIAL'};
+        return {type: C.INITIAL};
     },
     alertLoginFail: function(){
-        return {type: 'LOGIN_FAIL'};
+        return {type: C.LOGIN_FAIL};
     },
     alertRegisterSucc: function(){
-        return {type: 'REGISTER_SUCC'};
+        return {type: C.REGISTER_SUCC};
     },
     alertRegisterFail: function(){
-        return {type: 'REGISTER_FAIL'};
+        return {type: C.REGISTER_FAIL};
     }
 };

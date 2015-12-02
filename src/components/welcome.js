@@ -1,6 +1,8 @@
-var React = require("react");
+'use strict';
 
-var Welcome = React.createClass({
+let React = require("react");
+
+const Welcome = React.createClass({
     render: function(){
         return (
             <h1>Welcome!</h1>

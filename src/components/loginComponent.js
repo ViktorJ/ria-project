@@ -1,14 +1,16 @@
-var React = require("react");
-var ptypes = React.PropTypes;
-var Router = require('react-router').Router;
-var ReactRedux = require('react-redux');
-var Link = require('react-router').Link;
-var Navigation = require('react-router').Navigation;
-var Alert = require("./alert");
-var actions = require('../actions');
-var myFirebase = "https://sizzling-torch-6425.firebaseio.com";
+'use strict';
 
-var LoginComponent = React.createClass({
+let React = require("react"),
+    ptypes = React.PropTypes,
+    Router = require('react-router').Router,
+    ReactRedux = require('react-redux'),
+    Link = require('react-router').Link,
+    Navigation = require('react-router').Navigation,
+    Alert = require("./alert"),
+    actions = require('../actions'),
+    C = require('../constants');
+
+let LoginComponent = React.createClass({
     mixins: [Navigation],
     redirect: function(){
         this.props.history.pushState(null, '/welcome');
@@ -16,15 +18,15 @@ var LoginComponent = React.createClass({
     handleLoginSubmit: function(e){
         e.preventDefault();
         
-        var user = {
+        let user = {
             email   : this.refs.email.value,
             password: this.refs.password.value
         };
         
-        this.firebaseRef = new Firebase(myFirebase);
-        var authData = this.firebaseRef.getAuth();
+        this.firebaseRef = new Firebase(C.FIREBASE_URL);
+        let authData = this.firebaseRef.getAuth();
         
-        var self = this;
+        let self = this;
         function authHandler(error, authData) {
           if (error) {
             console.log("Login Failed!", error);
@@ -56,11 +58,11 @@ var LoginComponent = React.createClass({
     }
 });
 
-var mapStateToProps = function(state){
+let mapStateToProps = function(state){
     return {alert:state.alert};
 };
 
-var mapDispatchToProps = function(dispatch){
+let mapDispatchToProps = function(dispatch){
     return {
         loginFail: function(){
             dispatch(actions.alertLoginFail());

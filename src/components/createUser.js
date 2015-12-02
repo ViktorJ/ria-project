@@ -1,25 +1,27 @@
-var React = require("react");
-var ptypes = React.PropTypes;
-var ReactRedux = require('react-redux');
-var Router = require('react-router').Router;
-var Link = require('react-router').Link;
-var Alert = require("./alert");
-var actions = require('../actions');
-var myFirebase = "https://sizzling-torch-6425.firebaseio.com";
+'use strict';
 
-var CreateUser = React.createClass({
+let React = require("react"),
+    ptypes = React.PropTypes,
+    ReactRedux = require('react-redux'),
+    Router = require('react-router').Router,
+    Link = require('react-router').Link,
+    Alert = require("./alert"),
+    actions = require('../actions'),
+    C = require('../constants');
+
+const CreateUser = React.createClass({
     handleCreateUser: function(e){
         e.preventDefault();
         
-        var user = {
+        let user = {
             email   : this.refs.email.value,
             password: this.refs.password.value
         };
         
-        this.firebaseRef = new Firebase(myFirebase);
-        var authData = this.firebaseRef.getAuth();
+        this.firebaseRef = new Firebase(C.FIREBASE_URL);
+        let authData = this.firebaseRef.getAuth();
         
-        var self = this;
+        let self = this;
         this.firebaseRef.createUser(user, function(error, userData) {
           if (error) {
             console.log("Error creating user:", error);
@@ -51,11 +53,11 @@ var CreateUser = React.createClass({
     }
 });
 
-var mapStateToProps = function(state){
+let mapStateToProps = function(state){
     return {alert:state.alert};
 };
 
-var mapDispatchToProps = function(dispatch){
+let mapDispatchToProps = function(dispatch){
     return {
         registerSucc: function(){
             dispatch(actions.alertRegisterSucc());

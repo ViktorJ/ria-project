@@ -1,7 +1,9 @@
-var initialState = require('../initialstate');
+'use strict';
 
-var AlertReducer = function(state, action){
-    var newState = Object.assign({}, state);
+let initialState = require('../initialstate');
+
+const AlertReducer = function(state, action){
+    let newState = Object.assign({}, state);
     switch(action.type){
         case 'INITIAL':
             return initialState().alert;

@@ -1,6 +1,8 @@
-var React = require("react");
+'use strict';
 
-var Alert = React.createClass({
+let React = require("react");
+
+const Alert = React.createClass({
     render: function(){
         return (
             <div className={this.props.alertClass}>{this.props.alertMsg}</div>

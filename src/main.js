@@ -1,9 +1,11 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Router = require('react-router').Router;
-var Provider = require('react-redux').Provider;
-var store = require('./store');
-var routes = require('./routes');
+'use strict';
+
+let React = require('react'),
+    ReactDOM = require('react-dom'),
+    Router = require('react-router').Router,
+    Provider = require('react-redux').Provider,
+    store = require('./store'),
+    routes = require('./routes');
 
 
 

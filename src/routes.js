@@ -1,11 +1,13 @@
-var React = require('react');
-var Router = require('react-router').Router;
-var Route = require('react-router').Route;
-var IndexRoute = require('react-router').IndexRoute;
-var Wrapper = require('./components/wrapper');
-var Welcome = require('./components/welcome');
-var LoginComponent = require('./components/logincomponent');
-var CreateUser = require('./components/createuser');
+'use strict';
+
+let React = require('react'),
+    Router = require('react-router').Router,
+    Route = require('react-router').Route,
+    IndexRoute = require('react-router').IndexRoute,
+    Wrapper = require('./components/wrapper'),
+    Welcome = require('./components/welcome'),
+    LoginComponent = require('./components/logincomponent'),
+    CreateUser = require('./components/createuser');
 
 module.exports = (
     <Route path="/" component={Wrapper}>
