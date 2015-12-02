@@ -24584,7 +24584,7 @@ const CreateUser = React.createClass({
                 ),
                 React.createElement(
                     'button',
-                    { className: 'btn btn-info', onClick: this.props.initial, __source: {
+                    { type: 'button', className: 'btn btn-info', onClick: this.props.initial, __source: {
                             fileName: '../../../../../src/components/createuser.js',
                             lineNumber: 48
                         }
@@ -24675,7 +24675,7 @@ let LoginComponent = React.createClass({
     render: function () {
         return React.createElement(
             'div',
-            { className: 'col-sm-6 col-md-6 col-lg-6', __source: {
+            { className: 'col-sm-8 col-md-8 col-lg-8', __source: {
                     fileName: '../../../../../src/components/logincomponent.js',
                     lineNumber: 43
                 }

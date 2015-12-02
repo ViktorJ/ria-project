@@ -40,7 +40,7 @@ let LoginComponent = React.createClass({
     },
     render: function(){
         return (
-            <div className="col-sm-6 col-md-6 col-lg-6">
+            <div className="col-sm-8 col-md-8 col-lg-8">
             <h1>Login</h1>
             <form className="form-inline" onSubmit={this.handleLoginSubmit}>
               <div className="form-group">
