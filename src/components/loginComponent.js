@@ -10,7 +10,7 @@ let React = require("react"),
     actions = require('../actions'),
     C = require('../constants');
 
-let LoginComponent = React.createClass({
+const LoginComponent = React.createClass({
     mixins: [Navigation],
     redirect: function(){
         this.props.history.pushState(null, '/home');

@@ -1,7 +1,7 @@
 "use strict";
 
-let React = require("react");
-C = require('../constants');
+let React = require("react"),
+    C = require('../constants');
 
 const Navbar = React.createClass({
     render: function(){

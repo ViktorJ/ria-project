@@ -24678,7 +24678,7 @@ let React = require("react"),
     actions = require('../actions'),
     C = require('../constants');
 
-let LoginComponent = React.createClass({
+const LoginComponent = React.createClass({
     displayName: 'LoginComponent',
 
     mixins: [Navigation],
@@ -24815,7 +24815,8 @@ module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LoginCo
 },{"../actions":227,"../constants":235,"./alert":228,"react":217,"react-redux":29,"react-router":55}],232:[function(require,module,exports){
 "use strict";
 
-let React = require("react");
+let React = require("react"),
+    C = require('../constants');
 
 const Navbar = React.createClass({
     displayName: "Navbar",
@@ -24825,21 +24826,21 @@ const Navbar = React.createClass({
             "nav",
             { className: "navbar navbar-default navbar-fixed-top", __source: {
                     fileName: "../../../../../src/components/navbar.js",
-                    lineNumber: 8
+                    lineNumber: 9
                 }
             },
             React.createElement(
                 "div",
                 { className: "container", __source: {
                         fileName: "../../../../../src/components/navbar.js",
-                        lineNumber: 9
+                        lineNumber: 10
                     }
                 },
                 React.createElement(
                     "p",
                     { className: "navbar-brand", __source: {
                             fileName: "../../../../../src/components/navbar.js",
-                            lineNumber: 10
+                            lineNumber: 11
                         }
                     },
                     "YetAnotherNoteApp"
@@ -24848,7 +24849,7 @@ const Navbar = React.createClass({
                     "p",
                     { className: "navbar-text navbar-right", __source: {
                             fileName: "../../../../../src/components/navbar.js",
-                            lineNumber: 11
+                            lineNumber: 12
                         }
                     },
                     "Logged in"
@@ -24860,28 +24861,45 @@ const Navbar = React.createClass({
 
 module.exports = Navbar;
 
-},{"react":217}],233:[function(require,module,exports){
+},{"../constants":235,"react":217}],233:[function(require,module,exports){
 "use strict";
 
-let React = require("react");
+let React = require("react"),
+    C = require("../constants");
 
 const newNote = React.createClass({
     displayName: "newNote",
 
+    handleSubmit: function (e) {
+        e.preventDefault();
+
+        this.firebaseRef = new Firebase(C.FIREBASE_URL);
+        let newNoteRef = this.firebaseRef.child("notes");
+
+        let userId = this.firebaseRef.getAuth().uid;
+
+        newNoteRef.push({
+            user: userId,
+            title: this.refs.noteTitle.value,
+            content: this.refs.noteContent.value
+        });
+
+        this.refs.noteTitle.value = "";
+        this.refs.noteContent.value = "";
+    },
     render: function () {
         return React.createElement(
             "form",
-            {
-                __source: {
+            { onSubmit: this.handleSubmit, __source: {
                     fileName: "../../../../../src/components/newnote.js",
-                    lineNumber: 8
+                    lineNumber: 26
                 }
             },
             React.createElement(
                 "div",
                 { className: "form-group", __source: {
                         fileName: "../../../../../src/components/newnote.js",
-                        lineNumber: 9
+                        lineNumber: 27
                     }
                 },
                 React.createElement(
@@ -24889,14 +24907,14 @@ const newNote = React.createClass({
                     {
                         __source: {
                             fileName: "../../../../../src/components/newnote.js",
-                            lineNumber: 10
+                            lineNumber: 28
                         }
                     },
                     "Note title"
                 ),
-                React.createElement("input", { type: "text", className: "form-control", id: "noteTitle", __source: {
+                React.createElement("input", { type: "text", className: "form-control", ref: "noteTitle", __source: {
                         fileName: "../../../../../src/components/newnote.js",
-                        lineNumber: 11
+                        lineNumber: 29
                     }
                 })
             ),
@@ -24904,7 +24922,7 @@ const newNote = React.createClass({
                 "div",
                 { className: "form-group", __source: {
                         fileName: "../../../../../src/components/newnote.js",
-                        lineNumber: 13
+                        lineNumber: 31
                     }
                 },
                 React.createElement(
@@ -24912,14 +24930,14 @@ const newNote = React.createClass({
                     {
                         __source: {
                             fileName: "../../../../../src/components/newnote.js",
-                            lineNumber: 14
+                            lineNumber: 32
                         }
                     },
                     "Note"
                 ),
-                React.createElement("textarea", { className: "form-control", rows: "4", id: "note", __source: {
+                React.createElement("textarea", { className: "form-control", rows: "4", ref: "noteContent", __source: {
                         fileName: "../../../../../src/components/newnote.js",
-                        lineNumber: 15
+                        lineNumber: 33
                     }
                 })
             ),
@@ -24927,7 +24945,7 @@ const newNote = React.createClass({
                 "button",
                 { type: "submit", className: "btn btn-primary", __source: {
                         fileName: "../../../../../src/components/newnote.js",
-                        lineNumber: 17
+                        lineNumber: 35
                     }
                 },
                 "Submit"
@@ -24938,7 +24956,7 @@ const newNote = React.createClass({
 
 module.exports = newNote;
 
-},{"react":217}],234:[function(require,module,exports){
+},{"../constants":235,"react":217}],234:[function(require,module,exports){
 'use strict';
 
 let React = require('react');
