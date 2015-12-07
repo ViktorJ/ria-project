@@ -5,14 +5,14 @@ let React = require('react'),
     Route = require('react-router').Route,
     IndexRoute = require('react-router').IndexRoute,
     Wrapper = require('./components/wrapper'),
-    Welcome = require('./components/welcome'),
+    Home = require('./components/home'),
     LoginComponent = require('./components/logincomponent'),
     CreateUser = require('./components/createuser');
 
 module.exports = (
     <Route path="/" component={Wrapper}>
         <IndexRoute component={LoginComponent} />
-        <Route path="/welcome" component={Welcome} />
+        <Route path="/home" component={Home} />
         <Route path="/createUser" component={CreateUser} />
     </Route>
 );

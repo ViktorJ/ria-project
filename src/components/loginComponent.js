@@ -13,7 +13,7 @@ let React = require("react"),
 let LoginComponent = React.createClass({
     mixins: [Navigation],
     redirect: function(){
-        this.props.history.pushState(null, '/welcome');
+        this.props.history.pushState(null, '/home');
     },
     handleLoginSubmit: function(e){
         e.preventDefault();
