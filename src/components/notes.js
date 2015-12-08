@@ -11,6 +11,7 @@ const Notes = React.createClass({
     componentWillMount: function(){
         let firebaseRef = new Firebase(C.FIREBASE_URL);
         let noteRef = firebaseRef.child("notes");
+        let userId = firebaseRef.getAuth().uid;
         
         noteRef.on("value", function(snapshot){
             let notes = [];
@@ -18,7 +19,10 @@ const Notes = React.createClass({
             snapshot.forEach(function(noteSnap){
                 let note = noteSnap.val();
                 note.key = noteSnap.key();
-                notes.push(note);
+                if(userId === note.user){
+                    notes.push(note);
+                }
+                
             });
             
             this.setState({

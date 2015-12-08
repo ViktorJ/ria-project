@@ -25033,6 +25033,7 @@ const Notes = React.createClass({
     componentWillMount: function () {
         let firebaseRef = new Firebase(C.FIREBASE_URL);
         let noteRef = firebaseRef.child("notes");
+        let userId = firebaseRef.getAuth().uid;
 
         noteRef.on("value", (function (snapshot) {
             let notes = [];
@@ -25040,7 +25041,9 @@ const Notes = React.createClass({
             snapshot.forEach(function (noteSnap) {
                 let note = noteSnap.val();
                 note.key = noteSnap.key();
-                notes.push(note);
+                if (userId === note.user) {
+                    notes.push(note);
+                }
             });
 
             this.setState({
@@ -25053,7 +25056,7 @@ const Notes = React.createClass({
             "div",
             { className: "notes", __source: {
                     fileName: "../../../../../src/components/notes.js",
-                    lineNumber: 31
+                    lineNumber: 35
                 }
             },
             this.state.notes.map(function (note) {
@@ -25061,14 +25064,14 @@ const Notes = React.createClass({
                     Link,
                     { to: "/note/:id", params: note.key, key: note.key, __source: {
                             fileName: "../../../../../src/components/notes.js",
-                            lineNumber: 33
+                            lineNumber: 37
                         }
                     },
                     React.createElement(
                         "div",
                         { className: "well", key: note.key, __source: {
                                 fileName: "../../../../../src/components/notes.js",
-                                lineNumber: 33
+                                lineNumber: 37
                             }
                         },
                         note.title
