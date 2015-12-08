@@ -24848,7 +24848,8 @@ module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LoginCo
 "use strict";
 
 let React = require("react"),
-    C = require('../constants');
+    C = require('../constants'),
+    Link = require('react-router').Link;
 
 const Navbar = React.createClass({
     displayName: "Navbar",
@@ -24858,30 +24859,38 @@ const Navbar = React.createClass({
             "nav",
             { className: "navbar navbar-default navbar-fixed-top", __source: {
                     fileName: "../../../../../src/components/navbar.js",
-                    lineNumber: 9
+                    lineNumber: 10
                 }
             },
             React.createElement(
                 "div",
                 { className: "container", __source: {
                         fileName: "../../../../../src/components/navbar.js",
-                        lineNumber: 10
+                        lineNumber: 11
                     }
                 },
                 React.createElement(
-                    "p",
-                    { className: "navbar-brand", __source: {
+                    Link,
+                    { to: "/", __source: {
                             fileName: "../../../../../src/components/navbar.js",
-                            lineNumber: 11
+                            lineNumber: 12
                         }
                     },
-                    "YetAnotherNoteApp"
+                    React.createElement(
+                        "p",
+                        { className: "navbar-brand", __source: {
+                                fileName: "../../../../../src/components/navbar.js",
+                                lineNumber: 12
+                            }
+                        },
+                        "YetAnotherNoteApp"
+                    )
                 ),
                 React.createElement(
                     "p",
                     { className: "navbar-text navbar-right", __source: {
                             fileName: "../../../../../src/components/navbar.js",
-                            lineNumber: 12
+                            lineNumber: 13
                         }
                     },
                     "Logged in"
@@ -24893,7 +24902,7 @@ const Navbar = React.createClass({
 
 module.exports = Navbar;
 
-},{"../constants":237,"react":217}],233:[function(require,module,exports){
+},{"../constants":237,"react":217,"react-router":55}],233:[function(require,module,exports){
 "use strict";
 
 let React = require("react"),

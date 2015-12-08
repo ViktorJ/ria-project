@@ -1,7 +1,8 @@
 "use strict";
 
 let React = require("react"),
-    C = require('../constants');
+    C = require('../constants'),
+    Link = require('react-router').Link;
 
 const Navbar = React.createClass({
     render: function(){
