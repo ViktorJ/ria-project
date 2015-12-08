@@ -7,13 +7,15 @@ let React = require('react'),
     Wrapper = require('./components/wrapper'),
     Home = require('./components/home'),
     LoginComponent = require('./components/logincomponent'),
-    CreateUser = require('./components/createuser');
+    CreateUser = require('./components/createuser'),
+    Note = require('./components/note');
 
 module.exports = (
     <Route path="/" component={Wrapper}>
         <IndexRoute component={LoginComponent} />
         <Route path="/home" component={Home} />
         <Route path="/createUser" component={CreateUser} />
+        <Route path="/note/:id" component={Note} />
     </Route>
 );
 

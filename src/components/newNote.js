@@ -3,14 +3,14 @@
 let React = require("react"),
     C = require("../constants");
 
-const newNote = React.createClass({
+const NewNote = React.createClass({
     handleSubmit: function(e){
         e.preventDefault();
         
-        this.firebaseRef = new Firebase(C.FIREBASE_URL);
-        let newNoteRef = this.firebaseRef.child("notes");
+        let firebaseRef = new Firebase(C.FIREBASE_URL);
+        let newNoteRef = firebaseRef.child("notes");
         
-        let userId = this.firebaseRef.getAuth().uid;
+        let userId = firebaseRef.getAuth().uid;
         
         newNoteRef.push({
             user: userId,
@@ -38,4 +38,4 @@ const newNote = React.createClass({
     }
 });
 
-module.exports = newNote;
+module.exports = NewNote;

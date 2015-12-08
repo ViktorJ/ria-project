@@ -5,7 +5,7 @@ let Redux = require('redux'),
     initialState = require('./initialstate');
 
 let reducers = Redux.combineReducers({
-    alert: alertReducer
+    alert: alertReducer, 
 });
 
 let store = Redux.createStore(reducers, initialState());

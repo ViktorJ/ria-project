@@ -8,4 +8,5 @@ module.exports = {
         LOGIN_FAIL : 'LOGIN_FAIL',
         REGISTER_SUCC : 'REGISTER_SUCC',
         REGISTER_FAIL : 'REGISTER_FAIL'
+    
 };
