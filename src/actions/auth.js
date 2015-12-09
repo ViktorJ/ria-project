@@ -44,7 +44,7 @@ module.exports = {
     },
     createUser: function(user){
         return function(dispatch, getState){
-           
+            dispatch({type:C.REGISTER});
             firebaseRef.createUser(user, function(error, userData) {
               if (error) {
                 console.log("Error creating user:", error);

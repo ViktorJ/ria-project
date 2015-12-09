@@ -18,6 +18,9 @@ module.exports = {
         ATTEMPT_LOGIN: "ATTEMPT_LOGIN",
         LOGIN_USER: "LOGIN_USER",
         LOGIN: "LOGIN",
-        LOGOUT: "LOGOUT"
+        LOGOUT: "LOGOUT",
+    
+        //note actions
+        NEW_NOTE: "NEW_NOTE"
     
 };

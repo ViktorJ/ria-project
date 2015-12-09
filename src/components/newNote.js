@@ -1,22 +1,20 @@
 "use strict";
 
 let React = require("react"),
+    ReactRedux = require("react-redux"),
+    actions = require("../actions/actions"),
     C = require("../constants");
 
 const NewNote = React.createClass({
     handleSubmit: function(e){
         e.preventDefault();
-        
-        let firebaseRef = new Firebase(C.FIREBASE_URL);
-        let newNoteRef = firebaseRef.child("notes");
-        
-        let userId = firebaseRef.getAuth().uid;
-        
-        newNoteRef.push({
-            user: userId,
+         
+        let note = {
             title: this.refs.noteTitle.value,
             content: this.refs.noteContent.value
-        });
+        };
+        
+        this.props.submitNewNote(note);
         
         this.refs.noteTitle.value = "";
         this.refs.noteContent.value = "";
@@ -38,4 +36,18 @@ const NewNote = React.createClass({
     }
 });
 
-module.exports = NewNote;
+let mapStateToProps = function(state){
+    return {
+        notes:state.notes
+    };
+};
+
+let mapDispatchToProps = function(dispatch){
+    return {
+        submitNewNote: function(note){
+            dispatch(actions.submitNewNote(note));
+        }
+    }
+};
+
+module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(NewNote);

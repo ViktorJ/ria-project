@@ -13,5 +13,10 @@ module.exports = function(){
             email: null,
             userId: null
         },
+        notes: {
+            user: null,
+            title: null,
+            content: null
+        }
     }
 };
