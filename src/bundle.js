@@ -1,0 +1,1 @@
+console.error("Error: Parsing file /Users/viktorjansson/Documents/skola/ria/ria-project/src/main.js: Unexpected token (14:4)");

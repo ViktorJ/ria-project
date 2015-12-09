@@ -6,7 +6,7 @@ let React = require("react"),
     Router = require('react-router').Router,
     Link = require('react-router').Link,
     Alert = require("./alert"),
-    actions = require('../actions'),
+    actions = require('../actions/actions'),
     C = require('../constants');
 
 const CreateUser = React.createClass({
@@ -18,19 +18,7 @@ const CreateUser = React.createClass({
             password: this.refs.password.value
         };
         
-        this.firebaseRef = new Firebase(C.FIREBASE_URL);
-        let authData = this.firebaseRef.getAuth();
-        
-        let self = this;
-        this.firebaseRef.createUser(user, function(error, userData) {
-          if (error) {
-            console.log("Error creating user:", error);
-           self.props.registerFail();
-          } else {
-            console.log("Successfully created user account with uid:", userData.uid);
-            self.props.registerSucc();
-          }
-        });
+        this.props.registerUser(user);
     },
     render: function(){
         return (
@@ -54,7 +42,8 @@ const CreateUser = React.createClass({
 });
 
 let mapStateToProps = function(state){
-    return {alert:state.alert};
+    return {alert:state.alert,
+           auth:state.auth};
 };
 
 let mapDispatchToProps = function(dispatch){
@@ -67,6 +56,9 @@ let mapDispatchToProps = function(dispatch){
         },
         initial: function(){
             dispatch(actions.initial());
+        },
+        registerUser: function(user){
+            dispatch(actions.createUser(user));
         }
     }
 };

@@ -5,7 +5,8 @@ let React = require('react'),
     Router = require('react-router').Router,
     Provider = require('react-redux').Provider,
     store = require('./store'),
-    routes = require('./routes');
+    routes = require('./routes'),
+    actions = require('./actions/actions');
 
 
 
@@ -14,3 +15,7 @@ ReactDOM.render((
         <Router routes={routes}/>
     </Provider>
 ), document.getElementById('content'));
+
+setTimeout(function(){
+    store.dispatch(actions.listeningToAuth());
+});

@@ -7,7 +7,7 @@ let React = require("react"),
     Link = require('react-router').Link,
     Navigation = require('react-router').Navigation,
     Alert = require("./alert"),
-    actions = require('../actions'),
+    actions = require('../actions/actions'),
     C = require('../constants');
 
 const LoginComponent = React.createClass({
@@ -19,26 +19,18 @@ const LoginComponent = React.createClass({
         e.preventDefault();
         
         let user = {
-            email   : this.refs.email.value,
+            email: this.refs.email.value,
             password: this.refs.password.value
         };
         
-        this.firebaseRef = new Firebase(C.FIREBASE_URL);
-        let authData = this.firebaseRef.getAuth();
+        this.props.login(user);
         
-        let self = this;
-        function authHandler(error, authData) {
-          if (error) {
-            console.log("Login Failed!", error);
-            self.props.loginFail();
-          } else {
-              console.log("Authenticated successfully with email: ", authData.password.email);
-              self.redirect();
-          }
+        if(this.props.auth.current === C.LOGGED_IN){
+            this.redirect();
         }
-        this.firebaseRef.authWithPassword(user, authHandler);
     },
     render: function(){
+        console.log(this.props.auth.current);
         return (
             <div className="col-sm-8 col-md-8 col-lg-8">
             <h1>Login</h1>
@@ -59,7 +51,10 @@ const LoginComponent = React.createClass({
 });
 
 let mapStateToProps = function(state){
-    return {alert:state.alert};
+    return {
+        alert:state.alert,
+        auth:state.auth
+    };
 };
 
 let mapDispatchToProps = function(dispatch){
@@ -69,6 +64,9 @@ let mapDispatchToProps = function(dispatch){
         },
         initial: function(){
             dispatch(actions.initial());
+        },
+        login: function(user){
+            dispatch(actions.login(user));
         }
     }
 };

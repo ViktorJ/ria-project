@@ -1,8 +1,9 @@
 'use strict';
 
-let C = require('./constants');
+let C = require('../constants');
 
 module.exports = {
+    //alert actions
     initial: function(){
         return {type: C.INITIAL};
     },
