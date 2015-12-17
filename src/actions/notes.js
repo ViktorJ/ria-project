@@ -30,20 +30,17 @@ module.exports = {
     },
     loadNotes: function(){
         return function(dispatch, getState){
-            let userId = firebaseRef.getAuth().uid;
             notesRef.on("value", function(snapshot){
                 let noteArray = [];
                 snapshot.forEach(function(note){
                     let noteData = note.val();
                     let key = note.key();
-                    if(noteData.user === userId){
                         noteArray.push({
                             user: noteData.user,
                             title: noteData.title,
                             content: noteData.content,
                             key: key
                         });
-                    }
                 });
                 dispatch({
                     type: C.RECEIVE_NOTE,

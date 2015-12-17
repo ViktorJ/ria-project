@@ -7,27 +7,27 @@ let React = require("react"),
     Link = require('react-router').Link;
 
 const Notes = React.createClass({
-    componentWillMount: function(){
-        this.notes = [];
-        this.key = 0;
-    },
     handleClick: function(note){
         this.props.viewNoteDetails(note);
     },
     render: function(){ 
-        let note = this.props.notes.data;
+        let notes = this.props.notes.data;
+        let user = this.props.auth.userId;
+        let noteArray = [];
+        let key = 0;
         
         let self = this;
-        if(this.props.notes.data){
-            this.props.notes.data.forEach(function(data){
-                self.key++;
-                self.notes.push(<Link to="/note" key={self.key++}><div key={data.key} className="well" onClick={self.handleClick.bind(self, data)}>{data.title}</div></Link>);        
+        if(notes){
+            notes.forEach(function(data){
+                if(data.user === user){
+                    noteArray.push(<Link to="/note" key={key++}><div key={data.key} className="well" onClick={self.handleClick.bind(self, data)}>{data.title}</div></Link>);        
+                }
             });
         }
     
         return (
             <div className="notes">
-                {note ? this.notes.reverse() : <i className="fa fa-spinner fa-3x fa-spin"></i>}
+                {notes ? noteArray.reverse() : <i className="fa fa-spinner fa-3x fa-spin"></i>}
             </div>
         );
     }
@@ -36,6 +36,7 @@ const Notes = React.createClass({
 let mapStateToProps = function(state){
     return {
         notes:state.notes,
+        auth:state.auth
     };
 };
 

@@ -24185,20 +24185,17 @@ module.exports = {
     },
     loadNotes: function () {
         return function (dispatch, getState) {
-            let userId = firebaseRef.getAuth().uid;
             notesRef.on("value", function (snapshot) {
                 let noteArray = [];
                 snapshot.forEach(function (note) {
                     let noteData = note.val();
                     let key = note.key();
-                    if (noteData.user === userId) {
-                        noteArray.push({
-                            user: noteData.user,
-                            title: noteData.title,
-                            content: noteData.content,
-                            key: key
-                        });
-                    }
+                    noteArray.push({
+                        user: noteData.user,
+                        title: noteData.title,
+                        content: noteData.content,
+                        key: key
+                    });
                 });
                 dispatch({
                     type: C.RECEIVE_NOTE,
@@ -24670,43 +24667,44 @@ let React = require("react"),
 const Notes = React.createClass({
     displayName: "Notes",
 
-    componentWillMount: function () {
-        this.notes = [];
-        this.key = 0;
-    },
     handleClick: function (note) {
         this.props.viewNoteDetails(note);
     },
     render: function () {
-        let note = this.props.notes.data;
+        let notes = this.props.notes.data;
+        let user = this.props.auth.userId;
+        let noteArray = [];
+        let key = 0;
 
         let self = this;
-        if (this.props.notes.data) {
-            this.props.notes.data.forEach(function (data) {
-                self.key++;
-                self.notes.push(React.createElement(
-                    Link,
-                    { to: "/note", key: self.key++ },
-                    React.createElement(
-                        "div",
-                        { key: data.key, className: "well", onClick: self.handleClick.bind(self, data) },
-                        data.title
-                    )
-                ));
+        if (notes) {
+            notes.forEach(function (data) {
+                if (data.user === user) {
+                    noteArray.push(React.createElement(
+                        Link,
+                        { to: "/note", key: key++ },
+                        React.createElement(
+                            "div",
+                            { key: data.key, className: "well", onClick: self.handleClick.bind(self, data) },
+                            data.title
+                        )
+                    ));
+                }
             });
         }
 
         return React.createElement(
             "div",
             { className: "notes" },
-            note ? this.notes.reverse() : React.createElement("i", { className: "fa fa-spinner fa-3x fa-spin" })
+            notes ? noteArray.reverse() : React.createElement("i", { className: "fa fa-spinner fa-3x fa-spin" })
         );
     }
 });
 
 let mapStateToProps = function (state) {
     return {
-        notes: state.notes
+        notes: state.notes,
+        auth: state.auth
     };
 };
 
