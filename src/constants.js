@@ -21,6 +21,9 @@ module.exports = {
         LOGOUT: "LOGOUT",
     
         //note actions
-        NEW_NOTE: "NEW_NOTE"
+        NEW_NOTE: "NEW_NOTE",
+        LIST_NOTES: "LIST_NOTES",
+        RECEIVE_NOTE: "RECEIVE_NOTE",
+        NOTE_DETAILS: "NOTE_DETAILS"
     
 };

@@ -8,13 +8,14 @@ let React = require("react"),
 
 const Navbar = React.createClass({
     render: function(){
-        console.log(this.props);
         return (
             <nav className="navbar navbar-default navbar-fixed-top">
             <div className="container">
                 <p className="navbar-brand">YetAnotherNoteApp</p>
-                <p className="navbar-text navbar-right">{}</p>
-                <Link to="/"><button className="btn btn-sm navbar-text navbar-right" onClick={this.props.logout}>Logout</button></Link>
+                <div className="navbar-right">
+                    <p className="navbar-text">{this.props.auth.email}</p>
+                    <Link to="/"><button className="btn btn-sm navbar-text" onClick={this.props.logout}>Logout</button></Link>
+                </div>
             </div>
             </nav>
         );

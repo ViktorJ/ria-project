@@ -15,7 +15,7 @@ module.exports = (
         <IndexRoute component={LoginComponent} />
         <Route path="/home" component={Home} />
         <Route path="/createUser" component={CreateUser} />
-        <Route path="/note/:id" component={Note} />
+        <Route path="/note" component={Note} />
     </Route>
 );
 

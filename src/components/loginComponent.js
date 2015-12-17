@@ -31,6 +31,7 @@ const LoginComponent = React.createClass({
     },
     render: function(){
         console.log(this.props.auth.current);
+        console.log(this.props);
         return (
             <div className="col-sm-8 col-md-8 col-lg-8">
             <h1>Login</h1>

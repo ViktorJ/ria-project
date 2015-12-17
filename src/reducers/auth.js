@@ -15,7 +15,7 @@ const AuthReducer = function(state, action){
             return {
                 current: C.LOGGED_IN,
                 email: action.email,
-                userId: action.userId
+                userId: action.uId
             };
         case C.LOGOUT:
             return {
@@ -30,7 +30,7 @@ const AuthReducer = function(state, action){
                 userId: null
             };
         default:
-            return state || initialState().auth;
+            return state || initialState.auth;
     }
 };
 

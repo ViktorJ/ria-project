@@ -5,14 +5,16 @@ let initialState = require('../initialstate'),
 
 const NotesReducer = function(state, action){
     switch(action.type){
-        case C.NEW_NOTE:
-            return {
-                user: action.userId,
-                title: action.title,
-                content: action.content
-            };
+        case C.RECEIVE_NOTE:
+            return Object.assign({}, state, {
+                data: action.data
+            });
+        case C.NOTE_DETAILS:
+            return Object.assign({}, state, {
+               data: action.data
+            });
             default:
-            return state || initialState().notes;
+            return state || initialState.notes;
     }
 }
 

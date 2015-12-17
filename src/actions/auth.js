@@ -48,7 +48,7 @@ module.exports = {
             firebaseRef.createUser(user, function(error, userData) {
               if (error) {
                 console.log("Error creating user:", error);
-               dispatch({type:C.REGISTER_FAIL});
+                dispatch({type:C.REGISTER_FAIL});
               } else {
                 console.log("Successfully created user account with uid:", userData.uid);
                 dispatch({type:C.REGISTER_SUCC});

@@ -21,7 +21,7 @@ const AlertReducer = function(state, action){
             newState.alertMsg = "Something went wrong, please try again.";
             return newState;
         default:
-            return state || initialState().alert;
+            return state || initialState.alert;
     }
 };
 
