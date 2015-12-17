@@ -1,3 +1,23 @@
 body {
     padding-top: 70px;
 }
+
+button {
+    margin-right: 3px;
+}
+
+.loginform {
+    text-align: center;
+}
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+}
+
+.large {
+    font-size: 250%;
+    font-weight: 600;
+    margin-bottom: 25px;
+}

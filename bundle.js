@@ -24379,8 +24379,6 @@ const LoginComponent = React.createClass({
         this.props.history.pushState(null, '/home');
     },
     handleLoginSubmit: function (e) {
-        e.preventDefault();
-
         let user = {
             email: this.refs.email.value,
             password: this.refs.password.value
@@ -24391,47 +24389,62 @@ const LoginComponent = React.createClass({
         if (this.props.auth.current === C.LOGGED_IN) {
             this.redirect();
         }
+        e.preventDefault();
     },
     render: function () {
         console.log(this.props.auth.current);
         console.log(this.props);
         return React.createElement(
             'div',
-            { className: 'col-sm-8 col-md-8 col-lg-8' },
+            { className: 'col-sm-6 col-md-6 col-lg-6 centered' },
             React.createElement(
                 'h1',
-                null,
-                'Login'
+                { className: 'text-center large' },
+                'YetAnotherNoteApp'
             ),
             React.createElement(
-                'form',
-                { className: 'form-inline', onSubmit: this.handleLoginSubmit },
+                'div',
+                { className: 'well' },
                 React.createElement(
-                    'div',
-                    { className: 'form-group' },
-                    React.createElement('input', { type: 'text', className: 'form-control', ref: 'email', placeholder: 'Email' })
+                    'h3',
+                    null,
+                    'Login to access your notes'
                 ),
                 React.createElement(
-                    'div',
-                    { className: 'form-group' },
-                    React.createElement('input', { type: 'password', className: 'form-control', ref: 'password', placeholder: 'Password' })
+                    'p',
+                    { className: 'small' },
+                    'If you dont have an account, sign up with the button below'
                 ),
                 React.createElement(
-                    'button',
-                    { type: 'submit', className: 'btn btn-primary' },
-                    'Login'
-                ),
-                React.createElement(
-                    'button',
-                    { type: 'button', className: 'btn btn-info', onClick: this.props.initial },
+                    'form',
+                    { className: 'form loginform', onSubmit: this.handleLoginSubmit },
                     React.createElement(
-                        Link,
-                        { to: '/createUser' },
-                        'New account'
+                        'div',
+                        { className: 'form-group' },
+                        React.createElement('input', { type: 'text', className: 'form-control', ref: 'email', placeholder: 'Email' })
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'form-group' },
+                        React.createElement('input', { type: 'password', className: 'form-control', ref: 'password', placeholder: 'Password' })
+                    ),
+                    React.createElement(
+                        'button',
+                        { type: 'submit', className: 'btn btn-default' },
+                        'Login'
+                    ),
+                    React.createElement(
+                        'button',
+                        { type: 'button', className: 'btn btn-info', onClick: this.props.initial },
+                        React.createElement(
+                            Link,
+                            { to: '/createUser' },
+                            'New account'
+                        )
                     )
-                )
-            ),
-            React.createElement(Alert, { alertClass: this.props.alert.alertClass, alertMsg: this.props.alert.alertMsg })
+                ),
+                React.createElement(Alert, { alertClass: this.props.alert.alertClass, alertMsg: this.props.alert.alertMsg })
+            )
         );
     }
 });
