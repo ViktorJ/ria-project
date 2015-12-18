@@ -1,6 +1,18 @@
-# ria-project
-Project for the course RIA-development
+# YetAnotherNoteApp
+Project for the course RIA-development at Linnaeus University.
 
-In this project i will create a webbapp using React, Redux and React-Router.
+The object of the project is to create a webbapp using React, Redux and React-Router.
 
-At this stage its only a "hello world" type of app.
+=======
+
+This is a note app that lets a user create an account and write, read and edit notes.
+
+=======
+
+Update (2015-12-18):
+Current functionality:
+- Create account
+- Write note
+- View notes
+
+... more coming
