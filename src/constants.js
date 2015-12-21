@@ -19,11 +19,14 @@ module.exports = {
         LOGIN_USER: "LOGIN_USER",
         LOGIN: "LOGIN",
         LOGOUT: "LOGOUT",
+        REGISTER: "REGISTER",
     
         //note actions
         NEW_NOTE: "NEW_NOTE",
         LIST_NOTES: "LIST_NOTES",
         RECEIVE_NOTE: "RECEIVE_NOTE",
-        NOTE_DETAILS: "NOTE_DETAILS"
+        NOTE_DETAILS: "NOTE_DETAILS",
+        BEGIN_EDIT_NOTE: "BEGIN_EDIT_NOTE",
+        END_EDIT_NOTE: "END_EDIT_NOTE"
     
 };
