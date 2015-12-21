@@ -19,7 +19,7 @@ const Notes = React.createClass({
                 if (note.user === user) {
                     noteArray.push(<div key={key} className="well"><Link to={"/note/" + note.key} key={key++}>
                         {note.title}
-                    </Link><div> <Link to={"/home/edit/" + note.key} onClick={self.props.editNote.bind(self, note)}><i class="fa fa-pencil-square-o"></i></Link></div></div>);
+                    </Link><div> <Link to={"/home/edit/" + note.key} onClick={self.props.editNote.bind(self, note)}><i className="fa fa-pencil-square-o"></i></Link></div></div>);
                 }
             });
         }
