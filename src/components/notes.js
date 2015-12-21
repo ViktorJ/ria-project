@@ -7,9 +7,6 @@ let React = require("react"),
     Link = require('react-router').Link;
 
 const Notes = React.createClass({
-    handleClick: function (note) {
-        this.props.viewNoteDetails(note);
-    },
     render: function () {
         let notes = this.props.notes.data;
         let user = this.props.auth.userId;
@@ -20,9 +17,8 @@ const Notes = React.createClass({
         if (notes) {
             notes.forEach(function (note) {
                 if (note.user === user) {
-                    noteArray.push(<div key={key}><Link to={"/note/" + note.key} key={key++}>
-                        <div key={note.key} className="well"
-                             onClick={self.handleClick.bind(self, note)}>{note.title}</div>
+                    noteArray.push(<div key={key} className="well"><Link to={"/note/" + note.key} key={key++}>
+                        {note.title}
                     </Link><div> <Link to={"/home/edit/" + note.key} onClick={self.props.editNote.bind(self, note)}>Edit</Link></div></div>);
                 }
             });
