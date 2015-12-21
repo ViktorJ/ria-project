@@ -1,10 +1,12 @@
 {
   "scripts": {
-    "build": "browserify -t [ babelify --presets [ react ] ] src/main.js -o bundle.js"
+    "build": "browserify -t [ babelify --presets [ react ] ] --debug src/main.js -o bundle.js"
   },
   "dependencies": {
+    "history": "^1.17.0",
     "react-redux": "^4.0.0",
-    "redux": "^3.0.4"
+    "redux": "^3.0.4",
+    "redux-thunk": "^1.0.2"
   },
   "devDependencies": {
     "babel-preset-react": "^6.3.13",

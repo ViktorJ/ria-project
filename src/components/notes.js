@@ -7,24 +7,23 @@ let React = require("react"),
     Link = require('react-router').Link;
 
 const Notes = React.createClass({
-    handleClick: function(note){
-        this.props.viewNoteDetails(note);
-    },
-    render: function(){ 
+    render: function () {
         let notes = this.props.notes.data;
         let user = this.props.auth.userId;
         let noteArray = [];
         let key = 0;
-        
+
         let self = this;
-        if(notes){
-            notes.forEach(function(data){
-                if(data.user === user){
-                    noteArray.push(<Link to="/note" key={key++}><div key={data.key} className="well" onClick={self.handleClick.bind(self, data)}>{data.title}</div></Link>);        
+        if (notes) {
+            notes.forEach(function (note) {
+                if (note.user === user) {
+                    noteArray.push(<div key={key} className="well"><Link to={"/note/" + note.key} key={key++}>
+                        {note.title}
+                    </Link><div> <Link to={"/home/edit/" + note.key} onClick={self.props.editNote.bind(self, note)}>Edit</Link></div></div>);
                 }
             });
         }
-    
+
         return (
             <div className="notes">
                 {notes ? noteArray.reverse() : <i className="fa fa-spinner fa-3x fa-spin"></i>}
@@ -33,17 +32,21 @@ const Notes = React.createClass({
     }
 });
 
-let mapStateToProps = function(state){
+let mapStateToProps = function (state) {
     return {
-        notes:state.notes,
-        auth:state.auth
+        notes: state.notes,
+        auth: state.auth
     };
 };
 
-let mapDispatchToProps = function(dispatch){
+let mapDispatchToProps = function (dispatch) {
     return {
-        viewNoteDetails: function(note){
+        viewNoteDetails: function (note) {
             dispatch(actions.viewNoteDetails(note));
+        },
+        editNote: function (note) {
+            console.log("Edit note clicked");
+            dispatch(actions.beginEditNote(note));
         }
     }
 };

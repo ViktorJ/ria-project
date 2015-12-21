@@ -7,12 +7,22 @@ let C = require('../constants'),
 module.exports = {
     submitNewNote: function(note){
         return function(dispatch, getState){
+            let userId = getState().auth.userId;
             let newNote = {
                 user: userId,
                 title: note.title,
                 content: note.content
             };
             notesRef.push(newNote);
+        }
+    },
+    beginEditNote: function(note){
+        return {type: C.BEGIN_EDIT_NOTE, note};
+    },
+    editNote: function(note){
+        return function(dispatch, getState){
+            notesRef.child(note.key).update({title: note.title, content: note.content});
+            dispatch({type: C.END_EDIT_NOTE});
         }
     },
     viewNoteDetails: function(note){

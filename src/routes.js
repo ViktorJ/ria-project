@@ -14,8 +14,9 @@ module.exports = (
     <Route path="/" component={Wrapper}>
         <IndexRoute component={LoginComponent} />
         <Route path="/home" component={Home} />
+        <Route path="/home/edit/:key" component={Home} />
         <Route path="/createUser" component={CreateUser} />
-        <Route path="/note" component={Note} />
+        <Route path="/note/:key" component={Note} />
     </Route>
 );
 

@@ -3,8 +3,7 @@
 let React = require("react"),
     NewNote = require("./newnote"),
     Navbar = require("./navbar"), 
-    Notes = require("./notes"),
-    C = require("../constants");
+    Notes = require("./notes");
 
 const Home = React.createClass({
     render: function(){
@@ -16,7 +15,7 @@ const Home = React.createClass({
                         <Notes />
                     </div>
                     <div className="col-sm-8 col-md-8 col-lg-8">
-                        <NewNote />
+                        <NewNote key={this.props.params.key} />
                     </div>
                 </div>
             </div>

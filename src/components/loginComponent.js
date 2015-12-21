@@ -11,7 +11,6 @@ let React = require("react"),
     C = require('../constants');
 
 const LoginComponent = React.createClass({
-    mixins: [Navigation],
     redirect: function(){
         this.props.history.pushState(null, '/home');
     },
@@ -36,7 +35,7 @@ const LoginComponent = React.createClass({
             <h1 className="text-center large">YetAnotherNoteApp</h1>
             <div className="well">
             <h3>Login to access your notes</h3>
-            <p className="small">If you dont have an account, sign up with the button below</p>
+            <p className="small">If you don't have an account, sign up with the button below</p>
             <form className="form loginform" onSubmit={this.handleLoginSubmit}>
               <div className="form-group">
                 <input type="text" className="form-control" ref="email" placeholder="Email" />

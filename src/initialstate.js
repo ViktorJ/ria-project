@@ -13,6 +13,7 @@ module.exports = {
         userId: null
     },
     notes: {
-        notes: {data: {}}
+        data: [],
+        noteCurrentlyBeingEdited: null
     }
 };

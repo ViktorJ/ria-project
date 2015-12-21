@@ -7,7 +7,7 @@ const AlertReducer = function(state, action){
     let newState = Object.assign({}, state);
     switch(action.type){
         case C.INITIAL:
-            return initialState().alert;
+            return initialState.alert;
         case C.LOGIN_FAIL:
             newState.alertClass = "alert alert-danger";
             newState.alertMsg = "Login failed, please try again.";
