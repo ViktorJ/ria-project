@@ -18,5 +18,5 @@ ReactDOM.render((
 
 setTimeout(function(){
     store.dispatch(actions.listeningToAuth());
-    store.dispatch(actions.loadNotes());
+    store.dispatch(actions.listeningToNotes());
 });

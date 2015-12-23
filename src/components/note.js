@@ -8,9 +8,6 @@ let React = require("react"),
     C = require("../constants");
 
 const Note = React.createClass({
-    componentWillMount: function () {
-        this.props.loadNotes();
-    },
     getDefaultProps: function () {
         return {notes: {data: {title: "", content: ""}}};
     },
@@ -25,7 +22,7 @@ const Note = React.createClass({
                     <h1>{note.title}</h1>
                     <div className="well">{note.content}</div>
                     <Link to="/home">
-                        <button className="btn btn-default" onClick={this.props.loadNotes}><i
+                        <button className="btn btn-default"><i
                             className="fa fa-angle-double-left"></i> Back
                         </button>
                     </Link>
@@ -48,13 +45,5 @@ let mapStateToProps = function (state) {
     };
 };
 
-let mapDispatchToProps = function (dispatch) {
-    return {
-        loadNotes: function () {
-            dispatch(actions.loadNotes());
-        }
-    }
-};
 
-
-module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Note);
+module.exports = ReactRedux.connect(mapStateToProps)(Note);

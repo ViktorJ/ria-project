@@ -38,7 +38,7 @@ module.exports = {
             });
         }
     },
-    loadNotes: function(){
+    listeningToNotes: function(){
         return function(dispatch, getState){
             notesRef.on("value", function(snapshot){
                 let noteArray = [];
