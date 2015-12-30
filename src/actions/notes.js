@@ -25,19 +25,6 @@ module.exports = {
             dispatch({type: C.END_EDIT_NOTE});
         }
     },
-    viewNoteDetails: function(note){
-        return function(dispatch, getState){
-            dispatch({
-                type: C.NOTE_DETAILS,
-                data: {
-                    user: note.user,
-                    title: note.title,
-                    content: note.content,
-                    key: note.key
-                }
-            });
-        }
-    },
     listeningToNotes: function(){
         return function(dispatch, getState){
             notesRef.on("value", function(snapshot){

@@ -26,13 +26,17 @@ const Note = React.createClass({
                             className="fa fa-angle-double-left"></i> Back
                         </button>
                     </Link>
+                    <button className="btn btn-info"><i className="fa fa-pencil-square-o"></i> Edit</button>
+                    <Link to="/home">
+                        <button className="btn btn-danger"><i className="fa fa-trash"></i> Delete</button>
+                    </Link>
                 </div>
             );
         } else {
             return (
                 <div className="noteDetails">
                     <Navbar />
-                    <h1>Missing the note data, please wait just a while longer</h1>
+                    <h1><i className="fa fa-spinner fa-3x fa-spin"></i></h1>
                 </div>
             )
         }
@@ -45,5 +49,13 @@ let mapStateToProps = function (state) {
     };
 };
 
+let mapDispatchToProps = function (dispatch) {
+    return {
+        deleteNote: function (key) {
+            dispatch(actions.deleteNote(key));
+        }
+    }
+};
 
-module.exports = ReactRedux.connect(mapStateToProps)(Note);
+
+module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Note);

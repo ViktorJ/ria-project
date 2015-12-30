@@ -14,6 +14,7 @@ const Notes = React.createClass({
         let key = 0;
 
         let self = this;
+        console.log(notes);
         if (notes) {
             notes.forEach(function (note) {
                 if (note.user === user) {
@@ -29,6 +30,7 @@ const Notes = React.createClass({
                 {notes ? noteArray.reverse() : <i className="fa fa-spinner fa-3x fa-spin"></i>}
             </div>
         );
+        
     }
 });
 
