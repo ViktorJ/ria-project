@@ -22,14 +22,12 @@ const LoginComponent = React.createClass({
         
         this.props.login(user);
         
-        if(this.props.auth.current === C.LOGGED_IN){
-            this.redirect();
-        }
         e.preventDefault();
     },
     render: function(){
-        console.log(this.props.auth.current);
-        console.log(this.props);
+        if(this.props.auth.current === C.LOGGED_IN){
+            this.redirect();
+        }
         return (
             <div className="col-sm-6 col-md-6 col-lg-6 centered">
             <h1 className="text-center large">YetAnotherNoteApp</h1>
@@ -62,9 +60,6 @@ let mapStateToProps = function(state){
 
 let mapDispatchToProps = function(dispatch){
     return {
-        loginFail: function(){
-            dispatch(actions.alertLoginFail());
-        },
         initial: function(){
             dispatch(actions.initial());
         },

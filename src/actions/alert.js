@@ -7,13 +7,12 @@ module.exports = {
     initial: function(){
         return {type: C.INITIAL};
     },
-    alertLoginFail: function(){
-        return {type: C.LOGIN_FAIL};
+    alertSuccess: function(msg){
+        return {type: C.ALERT_SUCCESS,
+                msg: msg};
     },
-    alertRegisterSucc: function(){
-        return {type: C.REGISTER_SUCC};
-    },
-    alertRegisterFail: function(){
-        return {type: C.REGISTER_FAIL};
+    alertFail: function(msg){
+        return {type: C.ALERT_FAIL,
+                msg: msg};
     }
 };

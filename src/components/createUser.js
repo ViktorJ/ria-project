@@ -48,12 +48,6 @@ let mapStateToProps = function(state){
 
 let mapDispatchToProps = function(dispatch){
     return {
-        registerSucc: function(){
-            dispatch(actions.alertRegisterSucc());
-        },
-        registerFail: function(){
-            dispatch(actions.alertRegisterFail());
-        },
         initial: function(){
             dispatch(actions.initial());
         },

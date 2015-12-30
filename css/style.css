@@ -21,3 +21,7 @@ button {
     font-weight: 600;
     margin-bottom: 25px;
 }
+
+.alert {
+    margin-top: 3px;
+}

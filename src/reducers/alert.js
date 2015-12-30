@@ -8,17 +8,13 @@ const AlertReducer = function(state, action){
     switch(action.type){
         case C.INITIAL:
             return initialState.alert;
-        case C.LOGIN_FAIL:
-            newState.alertClass = "alert alert-danger";
-            newState.alertMsg = "Login failed, please try again.";
-            return newState;
-        case C.REGISTER_SUCC:
+        case C.ALERT_SUCCESS:
             newState.alertClass = "alert alert-success";
-            newState.alertMsg = "You have created a new account. Please go back and login.";
+            newState.alertMsg = action.msg;
             return newState;
-        case C.REGISTER_FAIL:
+        case C.ALERT_FAIL:
             newState.alertClass = "alert alert-danger";
-            newState.alertMsg = "Something went wrong, please try again.";
+            newState.alertMsg = action.msg;
             return newState;
         default:
             return state || initialState.alert;

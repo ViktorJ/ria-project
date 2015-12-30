@@ -8,6 +8,8 @@ module.exports = {
         LOGIN_FAIL : 'LOGIN_FAIL',
         REGISTER_SUCC : 'REGISTER_SUCC',
         REGISTER_FAIL : 'REGISTER_FAIL',
+        ALERT_SUCCESS : 'ALERT_SUCCESS',
+        ALERT_FAIL : 'ALERT_FAIL',
     
         //auth states
         ANONYMOUS: "ANONYMOUS",

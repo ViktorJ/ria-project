@@ -29,7 +29,8 @@ module.exports = {
             firebaseRef.authWithPassword(user, function (error, authData) {
                 if (error) {
                     console.log("Login Failed!", error);
-                    dispatch({type: C.LOGIN_FAIL});
+                    dispatch({type: C.ALERT_FAIL,
+                              msg: "Login failed, please try again."});
                 } else {
                     dispatch({type: C.LOGIN_USER, email: user.email, userId: authData.uid});
                     console.log("Authenticated successfully with email: ", authData.password.email);
@@ -49,10 +50,12 @@ module.exports = {
             firebaseRef.createUser(user, function (error, userData) {
                 if (error) {
                     console.log("Error creating user:", error);
-                    dispatch({type: C.REGISTER_FAIL});
+                    dispatch({type: C.ALERT_FAIL,
+                              msg: "Couldn't create an account. Please try again."});
                 } else {
                     console.log("Successfully created user account with uid:", userData.uid);
-                    dispatch({type: C.REGISTER_SUCC});
+                    dispatch({type: C.ALERT_SUCCESS,
+                              msg: "You have successfully created an account. Please go back and login."});
                 }
             });
         }
