@@ -10,7 +10,7 @@ let React = require("react"),
     actions = require('../actions/actions'),
     C = require('../constants');
 
-const LoginComponent = React.createClass({
+const Login = React.createClass({
     redirect: function(){
         this.props.history.pushState(null, '/home');
     },
@@ -69,4 +69,4 @@ let mapDispatchToProps = function(dispatch){
     }
 };
 
-module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(LoginComponent);
+module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Login);
