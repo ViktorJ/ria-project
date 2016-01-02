@@ -5,9 +5,6 @@ module.exports = {
     
         //alert actions
         INITIAL : 'INITIAL',
-        LOGIN_FAIL : 'LOGIN_FAIL',
-        REGISTER_SUCC : 'REGISTER_SUCC',
-        REGISTER_FAIL : 'REGISTER_FAIL',
         ALERT_SUCCESS : 'ALERT_SUCCESS',
         ALERT_FAIL : 'ALERT_FAIL',
     
@@ -28,7 +25,5 @@ module.exports = {
         LIST_NOTES: "LIST_NOTES",
         RECEIVE_NOTE: "RECEIVE_NOTE",
         NOTE_DETAILS: "NOTE_DETAILS",
-        BEGIN_EDIT_NOTE: "BEGIN_EDIT_NOTE",
-        END_EDIT_NOTE: "END_EDIT_NOTE"
     
 };

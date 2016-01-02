@@ -14,13 +14,12 @@ const Notes = React.createClass({
         let key = 0;
 
         let self = this;
-        console.log(notes);
         if (notes) {
             notes.forEach(function (note) {
                 if (note.user === user) {
                     noteArray.push(<div key={key} className="well"><Link to={"/note/" + note.key} key={key++}>
                         {note.title}
-                    </Link><div> <Link to={"/home/edit/" + note.key} onClick={self.props.editNote.bind(self, note)}><i className="fa fa-pencil-square-o"></i></Link></div></div>);
+                    </Link></div>);
                 }
             });
         }

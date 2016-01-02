@@ -16,13 +16,9 @@ module.exports = {
             notesRef.push(newNote);
         }
     },
-    beginEditNote: function(note){
-        return {type: C.BEGIN_EDIT_NOTE, note};
-    },
-    editNote: function(note){
+    submitEditNote: function(note){
         return function(dispatch, getState){
             notesRef.child(note.key).update({title: note.title, content: note.content});
-            dispatch({type: C.END_EDIT_NOTE});
         }
     },
     listeningToNotes: function(){

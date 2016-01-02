@@ -26,7 +26,9 @@ const Note = React.createClass({
                             className="fa fa-angle-double-left"></i> Back
                         </button>
                     </Link>
+                    <Link to={"/editNote/" + note.key}>
                     <button className="btn btn-info"><i className="fa fa-pencil-square-o"></i> Edit</button>
+                    </Link>
                     <Link to="/home">
                         <button className="btn btn-danger"><i className="fa fa-trash"></i> Delete</button>
                     </Link>

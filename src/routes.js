@@ -8,7 +8,8 @@ let React = require('react'),
     Home = require('./components/home'),
     Login = require('./components/login'),
     CreateUser = require('./components/createuser'),
-    Note = require('./components/note');
+    Note = require('./components/note'),
+    EditNote = require('./components/editnote');
 
 module.exports = (
     <Route path="/" component={Wrapper}>
@@ -17,6 +18,7 @@ module.exports = (
         <Route path="/home/edit/:key" component={Home} />
         <Route path="/createUser" component={CreateUser} />
         <Route path="/note/:key" component={Note} />
+        <Route path="/editNote/:key" component={EditNote} />
     </Route>
 );
 
