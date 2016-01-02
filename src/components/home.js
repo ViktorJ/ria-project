@@ -15,7 +15,7 @@ const Home = React.createClass({
                         <Notes />
                     </div>
                     <div className="col-sm-8 col-md-8 col-lg-8">
-                        <NewNote key={this.props.params.key} />
+                        <NewNote />
                     </div>
                 </div>
             </div>

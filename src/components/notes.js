@@ -9,20 +9,23 @@ let React = require("react"),
 const Notes = React.createClass({
     render: function () {
         let notes = this.props.notes.data;
-        let user = this.props.auth.userId;
         let noteArray = [];
         let key = 0;
 
         let self = this;
-        if (notes) {
-            notes.forEach(function (note) {
-                if (note.user === user) {
-                    noteArray.push(<div key={key} className="well"><Link to={"/note/" + note.key} key={key++}>
-                        {note.title}
-                    </Link></div>);
-                }
-            });
+        if(this.props.auth.current === 'LOGGED_IN'){
+            if (notes) {
+                let user = this.props.auth.userId;
+                notes.forEach(function (note) {
+                    if(note.user === user){
+                        noteArray.push(<div key={key} className="well"><Link to={"/note/" + note.key} key={key++}>
+                            {note.title}
+                        </Link></div>);
+                    }
+                });
+            }
         }
+        
 
         return (
             <div className="notes">
@@ -40,16 +43,4 @@ let mapStateToProps = function (state) {
     };
 };
 
-let mapDispatchToProps = function (dispatch) {
-    return {
-        viewNoteDetails: function (note) {
-            dispatch(actions.viewNoteDetails(note));
-        },
-        editNote: function (note) {
-            console.log("Edit note clicked");
-            dispatch(actions.beginEditNote(note));
-        }
-    }
-};
-
-module.exports = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Notes);
+module.exports = ReactRedux.connect(mapStateToProps)(Notes);

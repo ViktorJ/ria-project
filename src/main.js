@@ -20,4 +20,3 @@ setTimeout(function(){
     store.dispatch(actions.listeningToAuth());
     store.dispatch(actions.listeningToNotes());
 });
-
