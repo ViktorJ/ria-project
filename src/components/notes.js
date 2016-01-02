@@ -12,7 +12,6 @@ const Notes = React.createClass({
         let noteArray = [];
         let key = 0;
 
-        let self = this;
         if(this.props.auth.current === 'LOGGED_IN'){
             if (notes) {
                 let user = this.props.auth.userId;

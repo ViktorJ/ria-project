@@ -9,10 +9,13 @@ This is a note app that lets a user create an account and write, read and edit n
 
 =======
 
-Update (2015-12-18):
+Update (2015-01-02):
 Current functionality:
 - Create account
 - Write note
 - View notes
+- Edit notes
+- Delete notes
 
-... more coming
+Currently known bugs:
+- Notes won't load on initial login but needs a page refresh to load properly.
