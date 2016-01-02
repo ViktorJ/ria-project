@@ -13,7 +13,7 @@ const Navbar = React.createClass({
             <div className="container">
                 <p className="navbar-brand">YetAnotherNoteApp</p>
                 <div className="navbar-right">
-                    <p className="navbar-text">{this.props.auth.email}</p>
+                    <p className="navbar-text"><i className="fa fa-user"></i> {this.props.auth.email}</p>
                     <Link to="/"><button className="btn btn-sm navbar-text" onClick={this.props.logout}>Logout</button></Link>
                 </div>
             </div>

@@ -8,10 +8,11 @@ let React = require("react"),
     C = require("../constants");
 
 const Note = React.createClass({
-    getDefaultProps: function () {
-        return {notes: {data: {title: "", content: ""}}};
+    handleDeleteButton: function(){
+        this.props.submitDeleteNote(this.props.params.key);
+        this.props.history.pushState(null, '/home');
     },
-    render: function () {
+    render: function(){
         let note = this.props.notes.data.filter(function(n){
          return n.key == this.props.params.key;
          }.bind(this))[0];
@@ -29,9 +30,7 @@ const Note = React.createClass({
                     <Link to={"/editNote/" + note.key}>
                     <button className="btn btn-info"><i className="fa fa-pencil-square-o"></i> Edit</button>
                     </Link>
-                    <Link to="/home">
-                        <button className="btn btn-danger"><i className="fa fa-trash"></i> Delete</button>
-                    </Link>
+                    <button className="btn btn-danger" onClick={this.handleDeleteButton}><i className="fa fa-trash"></i> Delete</button>
                 </div>
             );
         } else {
@@ -53,8 +52,8 @@ let mapStateToProps = function (state) {
 
 let mapDispatchToProps = function (dispatch) {
     return {
-        deleteNote: function (key) {
-            dispatch(actions.deleteNote(key));
+        submitDeleteNote: function (key) {
+            dispatch(actions.submitDeleteNote(key));
         }
     }
 };

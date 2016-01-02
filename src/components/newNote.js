@@ -3,6 +3,7 @@
 let React = require("react"),
     ReactRedux = require("react-redux"),
     actions = require("../actions/actions"),
+    Alert = require('./alert'),
     C = require("../constants");
 
 const NewNote = React.createClass({
@@ -31,6 +32,7 @@ const NewNote = React.createClass({
                     <textarea className="form-control" rows="4" ref="noteContent" />
                 </div>
                 <button type="submit" className="btn btn-primary"><i className="fa fa-check"></i> Submit</button>
+            <Alert alertClass={this.props.alert.alertClass} alertMsg={this.props.alert.alertMsg}/>
             </form>
         );
     }
@@ -38,7 +40,8 @@ const NewNote = React.createClass({
 
 let mapStateToProps = function(state){
     return {
-        notes:state.notes
+        notes:state.notes,
+        alert:state.alert,
     };
 };
 

@@ -21,6 +21,16 @@ module.exports = {
             notesRef.child(note.key).update({title: note.title, content: note.content});
         }
     },
+    submitDeleteNote: function(key){
+        return function(dispatch, getState){
+            notesRef.child(key).remove();
+            dispatch({type: C.ALERT_SUCCESS,
+                              msg: "The note was successfully removed!"});
+            setTimeout(function(){
+                dispatch({type: C.INITIAL});
+            }, 2000);
+        }
+    },
     listeningToNotes: function(){
         return function(dispatch, getState){
             notesRef.on("value", function(snapshot){
