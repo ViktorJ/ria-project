@@ -32,7 +32,7 @@ module.exports = {
                     dispatch({type: C.ALERT_FAIL,
                               msg: "Login failed, please try again."});
                 } else {
-                    //dispatch({type: C.LOGIN_USER, email: user.email, userId: authData.uid});
+                    //listeningToAuth handles this
                     console.log("Authenticated successfully with email: ", authData.password.email);
                 }
             });
