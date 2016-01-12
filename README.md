@@ -17,5 +17,3 @@ Current functionality:
 - Edit notes
 - Delete notes
 
-Currently known bugs:
-- Notes won't load on initial login but needs a page refresh to load properly.
