@@ -9,7 +9,7 @@ const AuthReducer = function(state, action){
             return {
                 current: C.AWAITING_AUTH,
                 email: null,
-                userId: null
+                userId: 'anonymous'
             };
         case C.LOGIN_USER:
             return {

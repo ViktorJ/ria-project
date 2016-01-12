@@ -7,7 +7,7 @@ let React = require("react"),
     Link = require('react-router').Link;
 
 const Notes = React.createClass({
-    render: function () {
+    renderNotes: function(){
         let notes = this.props.notes.data;
         let noteArray = [];
         let key = 0;
@@ -24,14 +24,22 @@ const Notes = React.createClass({
                 });
             }
         }
-        
-
-        return (
-            <div className="notes">
-                {notes ? noteArray.reverse() : <i className="fa fa-spinner fa-3x fa-spin"></i>}
-            </div>
-        );
-        
+        return noteArray.reverse();
+    },
+    render: function () {
+        if(this.props.notes.data){
+            return (
+                <div className="notes">
+                    {this.renderNotes()}
+                </div>
+            );
+        } else {
+            return (
+                <div className="notes">
+                   <i className="fa fa-spinner fa-3x fa-spin"></i>
+                </div>
+                );
+        }
     }
 });
 
