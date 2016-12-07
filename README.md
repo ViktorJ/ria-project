@@ -6,6 +6,11 @@ The object of the project is to create a webbapp using React, Redux and React-Ro
 =======
 
 This is a note app that lets a user create an account and write, read and edit notes.
+To run the application, clone the repository and run 'npm install'.
+
+If you want to try the app without creating an account you can use:
+Email: test@test.se
+Password: test
 
 =======
 
@@ -16,4 +21,3 @@ Current functionality:
 - View notes
 - Edit notes
 - Delete notes
-
